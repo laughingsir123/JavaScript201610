@@ -41,6 +41,8 @@ function change() {
     alert(uname)
 }
 change()
+
+
 6.在没有形参的情况下：函数声明早于变量声明
 function change() {
     alert(typeof fn) // function
@@ -50,6 +52,8 @@ function change() {
     var fn
 }
 change()；
+
+
 7.带var和不带var的区别；
 function abc(){
     a=12;
@@ -70,7 +74,7 @@ function fn() {
         }
     }
     var f = fn();
-    f(15);
+    f(15);                              
     f(20);
     fn()(15);
     fn()(20);
