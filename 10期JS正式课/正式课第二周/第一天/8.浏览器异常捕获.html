@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //当你估计一段程序会出错，而你又不想让他报错的时候，用浏览器异常捕获
+    //无论走try，还是走catch，都会走finally，所以finally一般不写；
+    //var a=123;
+    /*try{
+        alert(a)
+    }catch(e){//e:就是错误信息
+        alert('如果出错了，就走这里')
+    }finally{
+        alert('我来了')
+    }*/
+    try{
+        alert(a)
+    }catch(e){//e:就是错误信息
+        throw new Error(e);//手动抛出错误，同时阻断程序执行；
+        alert('如果出错了，就走这里');
+        alert('lalalaa')
+    }
+</script>
+</body>
+</html>

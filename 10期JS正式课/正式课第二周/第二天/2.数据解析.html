@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<p>Chain Reaction</p>
+
+<p>zhufeng</p>
+<script>
+    var aP=document.getElementsByTagName('p');
+    /*window.JSON={
+        parse:function(){}, //把JSON格式的字符串，转成JSON格式的数据-对象
+        stringify:function(){}
+    }*/
+    //var str='{"name":"zhufeng","age":8}'; //JSON格式的字符串
+    //var json={"name":"zhufeng","age":8};//JSON和对象的区别：JSON的属性名都用双引号；
+    //var obj={name:"zhufeng",age:8};
+   // alert('JSON' in window)
+    var str='[{"id":"1111","title":"Chain Reaction"},{"id":"22222","title":"zhufeng"}]';
+    //var ary=JSON.parse(str);
+    //console.log(ary)
+    /*alert(typeof str)
+    alert(typeof JSON)*/
+    /*aP[0].innerHTML=JSON.name;
+    aP[1].innerHTML=JSON.age;*/
+    /*for(var i=0; i<ary.length; i++){
+        aP[i].innerHTML=ary[i].title;
+    }*/
+    //alert(JSON.parse)
+    var ary1=eval('('+str+')') ;//eval会引起注入攻击；--不安全，我们在支持JSON.parse的浏览器中，直接JSON.parse(); 在不兼容JSON.parse()的浏览器中，用eval必须加上();
+    //console.log(ary1)
+    //JsonParse:把JSON格式的字符串，转成JSON格式的数据-对象格式
+    function JsonParse(str){
+        return 'JSON' in window? JSON.parse(str):eval('('+str+')')
+    }
+</script>
+</body>
+</html>

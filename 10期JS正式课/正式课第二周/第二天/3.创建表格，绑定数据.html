@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding:0;
+        }
+        table{
+            width: 600px;
+            margin: 50px auto;
+        }
+        table thead{
+            height: 40px;
+            line-height: 40px;
+        }
+        table tbody tr{
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<table border="1" cellpadding="0" cellspacing="0">
+    <tHead>
+        <th>姓名</th>
+        <th>年龄</th>
+        <th>分数</th>
+        <th>性别</th>
+    </tHead>
+    <tBody>
+        <!--<tr>
+            <td>赵老大</td>
+            <td>45</td>
+            <td>89</td>
+            <td>0</td>
+        </tr>-->
+    </tBody>
+</table>
+<script src="json.js"></script>
+<script>
+    var oTab=document.getElementsByTagName('table')[0];
+    var tBody=oTab.tBodies[0];
+    var aRow=tBody.rows;
+    var str='';
+    //1.字符串拼接的绑定方式
+    /*for(var i=0; i<jsonAry.length; i++){
+        var cur=jsonAry[i];
+        cur.sex=cur.sex==0?'男':'女';
+        str+='<tr>\
+                <td>'+cur.name+'</td>\
+                <td>'+cur.age+'</td>\
+                <td>'+cur.score+'</td>\
+                <td>'+cur.sex+'</td>\
+                </tr>';
+    }
+    tBody.innerHTML=str;*/
+    //2.动态创建-文档碎片
+    var frg=document.createDocumentFragment();//文档碎片；
+    for(var i=0; i<jsonAry.length; i++){
+        var cur=jsonAry[i];
+        var oTr=document.createElement('tr');
+        for(var attr in cur){
+            var oTd=document.createElement('td');
+            oTd.innerHTML=cur[attr];
+            oTr.appendChild(oTd);
+        }
+        frg.appendChild(oTr);
+    }
+    tBody.appendChild(frg);
+</script>
+</body>
+</html>

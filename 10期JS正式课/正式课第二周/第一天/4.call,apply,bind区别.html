@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //'use strict'; //严格模式
+    var obj={};
+    function fn(){
+        alert(this);
+    }
+    //在严格模式下，传什么，this就是什么
+    // fn.call(undefined);
+    // fn.call(null)
+    //fn.call()
+    //在非严格模式下，传undefined和null 拿到的都是window
+    //fn.call()
+    //fn.call(undefined)
+    //fn.call(null)
+
+    /*function fn(n,m){
+        alert(this+(n+m));
+    }*/
+    //fn.call(obj,2,3)
+    //fn.apply(obj,[2,3])
+    /*var res=fn.bind(obj,2,3);
+    res();*/
+    /*bind
+    * bind属于预处理机制；
+    * 1.先改变fn中的this指向，同时，给fn中的参数赋值
+    * 2.返回一个经过修改后的函数；
+    * 3.在我们需要的时候，手动调用；
+    *
+    * */
+</script>
+</body>
+</html>

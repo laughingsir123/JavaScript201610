@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var obj={name:'珠峰',age:7}; //{name:'中国',age:7}
+    ~function (obj){//；obj={};
+        obj.name='中国';
+        obj={};
+        obj.age=5000;//{age:5000}
+        console.log(obj)//{age:5000}
+    }(obj);
+    console.log(obj)//{name:'中国',age:7}
+</script>
+</body>
+</html>

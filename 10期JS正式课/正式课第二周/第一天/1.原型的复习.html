@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function Fn(){//构造函数：构造函数中存放的都是私有的属性和方法
+        this.x=100;
+    }
+    Fn.prototype.showX=function(){};//原型：原型上存放的都是公有的属性和方法；
+    var f=new Fn; //实例：既可以使用私有的属性和方法，也可以使用公有的属性和方法；
+    //alert(Object instanceof Function) //instanceOf :前面的实例，是否属于 后面的类
+    alert(Function instanceof  Object) //对象 属于 Object
+    //alert(Fn instanceof Function)
+    //alert(f instanceof  Object)
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<input type="button" value="按钮1"/>
+<input type="button" value="按钮2"/>
+<input type="button" value="按钮3"/>
+<script>
+    var aInput=document.getElementsByTagName('input');
+    var ary=['red','green','orange'];
+    //思路1：自定义属性
+    /*for(var i=0; i<aInput.length; i++){
+        aInput[i].index=i;
+        aInput[i].onclick=function(){
+            document.body.style.background=ary[this.index];
+        }
+    }*/
+    //思路2：闭包
+    for(var i=0; i<aInput.length; i++){
+        (function(index){//闭包保存正确的i值
+            aInput[index].onclick=function(){
+                document.body.style.background=ary[index];
+            }
+        })(i);
+    }
+</script>
+</body>
+</html>

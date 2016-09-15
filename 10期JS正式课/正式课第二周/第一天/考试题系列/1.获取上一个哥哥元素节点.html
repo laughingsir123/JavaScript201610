@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //1.兼容标准浏览器--如果能直接获取的话，就直接获取
+    //2.不能直接获取的，自己做兼容处理
+    (function(){
+        function prev(curEle){
+            if(curEle.previousElementSibling){
+                return curEle.previousElementSibling;
+            }
+            //自己做兼容处理
+            //1.上一个哥哥节点
+            var pre=curEle.previousSibling;
+            //2.上一个节点存在，并且不是元素节点，我们继续往上找上一个节点的哥哥节点，如果还不是，继续往上，至于要找多少次才能找到哥哥元素节点，我们也不知道，所以，需要用while循环
+            while(pre && pre.nodeType != 1){
+                pre=pre.previousSibling;
+            }
+            return pre;
+        }
+        window.prev=prev;
+    })();
+</script>
+</body>
+</html>

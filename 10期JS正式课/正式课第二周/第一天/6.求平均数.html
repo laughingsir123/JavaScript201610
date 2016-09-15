@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //关于范冰冰演技的评分：
+    function average(){
+        //1.类数组转数组
+        /*var ary=[];
+        for(var i=0; i<arguments.length; i++){
+            ary.push(arguments[i]);
+        }*/
+        var ary=Array.prototype.slice.call(arguments,1,4);
+        console.log(ary)
+        //2.sort排序
+        ary.sort(function(a,b){return a-b});
+        //3.掐头去尾
+        ary.pop();
+        ary.shift();
+        //4.求平均数
+        return (eval(ary.join('+'))/ary.length).toFixed(2);
+    }
+    var res=average(9.7,8.77,0.77,5.777,1.7);
+    alert(res)
+</script>
+</body>
+</html>

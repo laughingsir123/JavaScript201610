@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div>3</div>
+<div>0</div>
+<div>2</div>
+<div>1</div>
+<script src="utils.js"></script>
+<script>
+    var aDiv=document.getElementsByTagName('div');
+    var ary=utils.makeArray(aDiv);
+    ary.sort(function(a,b){
+        return a.innerHTML - b.innerHTML;
+    })
+    //能影响页面的方法只有两个：appendChild,insertBefore
+    for(var i=0; i<ary.length; i++){
+        document.body.appendChild(ary[i]);
+    }
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

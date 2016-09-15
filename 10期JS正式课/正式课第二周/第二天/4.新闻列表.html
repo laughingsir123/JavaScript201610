@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            list-style: none;
+        }
+        ul{
+            width: 500px;
+            margin:50px auto;
+            border: 2px solid lightgreen;
+            box-shadow: 0 0 10px darkGreen;
+            padding:10px;
+        }
+        ul li{
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            border-bottom: 1px dashed green;
+
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        ul li span{
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: red;
+            color: white;
+            text-align: center;
+            line-height: 20px;
+            font-weight: bold;
+            margin-right: 4px;
+        }
+    </style>
+</head>
+<body>
+<ul id="ul1">
+    <li><span>0</span>习近平总书记１２日上午在十八届中央纪委六次全会上发表重要讲话，深刻分析反腐败斗争依然严峻复杂的形势，提出当前和今后一个时期的目标任务。</li>
+    <li><span>1</span>习近平总书记１２日上午在十八届中央纪委六次全会上发表重要讲话，深刻分析反腐败斗争依然严峻复杂的形势，提出当前和今后一个时期的目标任务。</li>
+    <li><span>2</span>习近平总书记１２日上午在十八届中央纪委六次全会上发表重要讲话，深刻分析反腐败斗争依然严峻复杂的形势，提出当前和今后一个时期的目标任务。</li>
+</ul>
+<script src="json1.js"></script>
+<script>
+    //根据数据，创建li；
+    var oUl=document.getElementById('ul1');
+    var aLi=oUl.getElementsByTagName('li');
+    for(var i=0; i<aLi.length; i++){
+        aLi[i].onmouseover=function(){
+            this.style.background='yellow';
+        };
+        aLi[i].onmouseout=function(){
+            this.style.background='';
+        };
+    }
+    //思路3：
+    var frg=document.createDocumentFragment();
+    for(var i=0; i<ary.length; i++){
+        var oLi=document.createElement('li');
+        oLi.innerHTML='<span>'+(i+3)+'</span>'+ary[i].desc;
+        frg.appendChild(oLi); //把每次创建的li都放入frg文档碎片；
+    }
+    oUl.appendChild(frg);
+    frg=null;
+    /*//思路2：动态创建--会引发页面回流，非常耗性能，不推荐
+    for(var i=0; i<ary.length; i++){
+        var oLi=document.createElement('li');
+        oLi.innerHTML='<span>'+(i+3)+'</span>'+ary[i].desc;
+        oUl.appendChild(oLi);
+    }*/
+    //回流 和 重绘
+    //回流：当页面结构发生一点变动的时候，需要刷新整个页面，进行重新的构建；--非常耗性能；
+    /*//1.字符串拼接的绑定方式
+    var str='';
+    for(var i=0; i<ary.length; i++){
+        str+='<li><span>'+(i+3)+'</span>'+ary[i].desc+'</li>';
+    }
+    oUl.innerHTML+=str;//=的作用：重新赋值；
+    //oUl.innerHTML=oUl.innerHTML+str;
+    //字符串拼接的方式，相当于把页面中的内容，全部拿出来，跟字符串进行拼接后，变成一个新的字符串；把这些字符串转为代码重新放入页面，所以，以前页面中元素身上原有的事件，已经都不在了；
+    //优点：1.绑定方式非常简单；2.性能好，因为他对DOM的操作只有一次；
+    //缺点：以前页面中元素身上的事件都不在了；*/
+</script>
+</body>
+</html>

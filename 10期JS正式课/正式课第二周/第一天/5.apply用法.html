@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function F(x,y){
+        this.x=x;
+        this.y=y;
+    }
+    function S(x,y){
+       // F.call(this,x,y)
+        var ary=[];
+        for(var i=0; i<arguments.length; i++){
+            ary.push(arguments[i]);
+        }
+        F.apply(this,ary)
+    }
+</script>
+</body>
+</html>

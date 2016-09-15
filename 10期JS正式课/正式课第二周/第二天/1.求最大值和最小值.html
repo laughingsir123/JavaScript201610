@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var ary=[21,2,48,9,34];
+    //思路1：sort
+    /*ary.sort(function(a,b){
+        return a-b
+    })
+    var min=ary[0];
+    var max=ary[ary.length-1];
+    alert(min);
+    alert(max);*/
+    //思路2：字符串拼接 配合 eval
+    /*min=Math.min('21','2','48','9','34');
+    max=Math.max('21','2','48','9','34');
+    var str=ary.join(','); //'21,2,48,9,34'
+    var max=eval('Math.max('+str+')');//'Math.max(21,2,48,9,34)'*/
+    //思路3：假设法；
+    /*var min=ary[0];
+    var max=ary[0];
+    for(var i=0; i<ary.length; i++){
+        if(ary[i]<min){
+            min=ary[i]
+        }
+        if(ary[i]>max){
+            max=ary[i]
+        }
+    }*/
+    //思路4：apply来实现
+    var max=Math.max.apply(null,ary);
+    alert(max)
+
+</script>
+</body>
+</html>

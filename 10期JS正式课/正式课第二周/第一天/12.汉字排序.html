@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body{
+            font-size: 50px;
+        }
+    </style>
+</head>
+<body>
+<div>珠峰</div>
+<div>刘胡兰</div>
+<div>布什</div>
+<div>爱国者</div>
+<script src="utils.js"></script>
+<script>
+    var aDiv=document.getElementsByTagName('div');
+    //1.类数组转数组
+    var ary=utils.makeArray(aDiv);
+    //2.sort排序
+    ary.sort(function(a,b){
+        //a:当前项  b：下一项
+        a=a.innerHTML;
+        b= b.innerHTML;
+        return a.localeCompare(b)
+    });
+    //3.把排好序的数组重新插入页面
+    for(var i=0; i<ary.length; i++){
+        document.body.appendChild(ary[i]);
+    }
+
+
+
+
+</script>
+</body>
+</html>
