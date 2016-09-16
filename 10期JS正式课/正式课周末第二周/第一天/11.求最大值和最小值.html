@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var ary=[2,19,8,34,21];
+    //思路1：sort
+    /*ary.sort(function(a,b){
+        return a-b;
+    })
+    var min=ary[0];
+    var max=ary[ary.length-1];*/
+    //思路2：假设法
+    /*var max=ary[0];
+    var min=ary[0];
+    for(var i=0; i<ary.length; i++){
+        if(ary[i]>max) max=ary[i];
+        if(ary[i]<min) min=ary[i];
+    }
+    alert(min);*/
+    //思路3：字符串拼接 配合 eval；
+    /*var str=ary.toString();
+    var str1='Math.max('+str+')';
+    var str2='Math.min('+str+')';
+    var max=eval(str1);
+    var min=eval(str2);//把字符串做为JS代码来执行；
+    alert(max)
+    alert(min)*/
+    //思路4：apply 配合 Math.max
+    var max=Math.max.apply(null,ary);
+    var min=Math.min.apply(null,ary)
+    alert(min)
+
+</script>
+</body>
+</html>

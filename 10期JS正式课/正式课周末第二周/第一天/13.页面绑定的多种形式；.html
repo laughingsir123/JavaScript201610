@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        ul{
+            width: 500px;
+            padding:10px;
+            margin:50px auto;
+            box-shadow: 0 0 10px darkGreen;
+        }
+        ul li{
+            height: 40px;
+            line-height: 40px;
+            border-bottom: 1px dashed lightgreen;
+
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        ul li span{
+            width:20px;
+            height:20px;
+            line-height: 20px;
+            border-radius: 50%;
+            display: inline-block;
+            background: red;
+            color: white;
+            text-align: center;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li><span>0</span>习近平总书记１２日上午在十八届中央纪委六次全会上发表重要讲话，深刻分析反腐败斗争依然严峻复杂的形势，提出当前和今后一个时期的目标任务。</li>
+    <li><span>1</span>习近平总书记１２日上午在十八届中央纪委六次全会上发表重要讲话，深刻分析反腐败斗争依然严峻复杂的形势，提出当前和今后一个时期的目标任务。</li>
+</ul>
+<script src="json1.js"></script>
+<script>
+    var oUl=document.getElementsByTagName('ul')[0];
+    var aLi=document.getElementsByTagName('li');
+    for(var i=0; i<aLi.length; i++){
+        aLi[i].onmouseover=function(){
+            this.style.background='yellow';
+        };
+        aLi[i].onmouseout=function(){
+            this.style.background=null;
+        };
+    }
+    /*for(var i=0; i<ary.length; i++){
+        var oLi=document.createElement('li');
+        oLi.innerHTML='<span>'+(i+2)+'</span>'+ary[i].desc;
+        oUl.appendChild(oLi); //DOM操作
+    }*/
+    /*var frg=document.createDocumentFragment();
+    for(var i=0; i<ary.length; i++){
+        var oLi=document.createElement('li');
+        oLi.innerHTML='<span>'+(i+2)+'</span>'+ary[i].desc;
+        frg.appendChild(oLi);
+    }
+    oUl.appendChild(frg);
+    frg=null;*/
+    var str='';
+    for(var i=0; i<ary.length; i++){
+        str+='<li><span>'+(2+i)+'</span>'+ary[i].desc+'</li>'
+    }
+    oUl.innerHTML+=str;
+    //oUl.innerHTML=oUl.innerHTML+str;
+   //关于回流和重绘：
+    //回流：当HTML页面结构有局部变动的时候，重新加载整个页面；非常耗性能；
+    //重绘：当HTML页面结构有局部变动的时候，只对局部进行更新；
+</script>
+</body>
+</html>

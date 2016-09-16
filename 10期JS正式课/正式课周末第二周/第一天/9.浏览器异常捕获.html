@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+   // var a=123;
+    //因为无论走try，还是走catch，都会走finally,所以，一般情况下，finally可以不写；
+    /*try{//当浏览器支持，走try中
+        alert(a)
+    }catch(e){//当浏览器不支持，报错的时候，走catch
+        alert('报错啦：'+e)
+    }finally{
+        alert('我是打酱油的')
+    }*/
+    try{
+        alert(a)
+    }catch(e){
+        alert(1);
+        throw new Error('我是出错的原因:'+e);//手动抛出错误，同时阻断程序的执行；
+        alert(2);
+        alert(3);
+    }
+</script>
+</body>
+</html>

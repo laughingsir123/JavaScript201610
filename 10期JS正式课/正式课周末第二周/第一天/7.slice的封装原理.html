@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var ary=[0.7,1.777,9.77,7.7,7.777];
+    //slice没有参数功能：克隆-数组
+    Array.prototype.slice=function(){
+        //this-ary这个实例；
+        var ary=[];
+        for(var i=0; i<this.length; i++){
+            ary.push(this[i]);
+        }
+        /*var ary=[];
+        for(var i=0; i<arguments.length; i++){
+            ary.push(arguments[i]);
+        }*/
+        return ary;
+    };
+    ary.slice();
+</script>
+</body>
+</html>

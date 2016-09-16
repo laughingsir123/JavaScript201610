@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<script>
+    function makeArray(arg){
+        var ary=[];
+        try{
+            ary=[].slice.call(arg);
+        }catch(e){
+            for(var i=0; i<arg.length; i++){
+                ary.push(arg[i])
+            }
+        }
+        return ary;
+    }
+    var aDiv=document.getElementsByTagName('div');
+    var ary=makeArray(aDiv);
+    console.dir(aDiv)
+    console.dir(ary)
+</script>
+</body>
+</html>

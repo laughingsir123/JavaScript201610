@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function Fn(){//构造函数：存的都是私有属性；
+        this.x=100;
+    }
+    Fn.prototype.showX=function(){//prototype存的是公有属性；
+        alert(this.x);
+    };
+    var f=new Fn; //创建实例：私有属性，和 原型上的公有属性；
+    //instanceof: 前面的实例 是否属于 后面的类；
+    //alert(Object instanceof Function) //Object这个实例 属于 Function这个类；
+    //alert(Fn instanceof  Function)
+    alert(Function instanceof  Object) //Function这个实例 属于 Object这个基类
+</script>
+</body>
+</html>

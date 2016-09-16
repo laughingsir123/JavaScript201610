@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var str='{"name":"zhufeng","age":8}'; //JSON格式的字符串
+   // var obj={name:'zhufeng',age:8}; //普通对象
+    var obj={"name":"zhufeng","age":8} //JSON
+    //JSON对象 是window上的属性；
+    //JSON对象包含两个方法：
+    // 1.JSON.parse() ：把JSON格式的字符串，变成JSON格式的数据-对象
+    // 2.JSON.stringify()：把JSON格式的对象，变成JSON格式的字符串；
+    //console.log(JSON.parse(str));
+    //console.log(typeof JSON.stringify(obj))
+     //alert('JSON' in window) //判断浏览器的方式；
+    console.log(eval('('+str+')'))
+</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    'use strict'
+    var obj={};
+    function fn(){
+        alert(this)
+    }
+    fn.call();
+    /*在严格模式下 'use strict'：传什么，拿到的this就是什么
+    *fn.call(undefined): undefined
+    *fn.call(null):null;
+    *fn.call():undefined
+    * */
+    /*
+    *在非严格模式下：
+    * 不传：window--fn.call();
+    * 传null:window --fn.call(null);
+    * 传undefined：window--fn.call(undefined);
+    * */
+</script>
+</body>
+</html>

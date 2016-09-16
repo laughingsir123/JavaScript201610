@@ -1,0 +1,71 @@
+1.函数数据类型中最大的Function：所有的函数数据类型，都是Function这个类的实例；
+所有的对象都最终属于Object基类；
+2.Function 和 Object之间的关系：
+    1）Function 是 Object 的爹：Object这个实例 属于 Function 这个类；
+    2）Object 是 Function 的爹：Function这个实例 属于 Object这个基类；
+    3）Object.prototype 是 Function 的爹:Object.prototype是Function这个实例的原型；
+    4）Object.prototype 是 Function.prototype的爹
+3.函数的三种角色：
+    1）普通函数：形成一个私有作用域-形参赋值-预解释-代码从上到下的执行; 栈内存释放；
+    2）类：实例，类，原型在打交道，constructor：当前类； __proto__原型链：当前实例所属类的原型；
+    3）普通对象：具有跟普通对象一样的特点：属性 和 方法；
+4.在Function.prototype上有常用的三个公有方法：
+call()
+apply()
+bind();
+所以，所有的实例-（普通函数和类），都可以使用原型上的公有方法：call，bind，apply；
+5.关于call，apply，bind的区别：
+1）call，apply用法一样，只是参数不同：
+    call的第二个参数开始，一个个的写参数--给call前面的函数是从左往右一个个的传参的；
+    apply的第二个参数以一个数组的形式写参数：--虽然以一个数组的形式写参数，但是在给apply前面的函数形参赋值的时候，还是从左往右一个个的传参的；
+2）bind属于预处理机制：
+先把bind前面的函数中的this改成bind的第一个参数，同时给bind前面的函数从左往右一个个的传参；等改完this，传完参数，返回一个经过修改后的函数；
+返回的函数，只有等我们需要的时候，手动调用；
+3)  call 和 bind的传参写法一样
+6.严格模式下，和 非严格模式下改this的区别：
+    在严格模式下 'use strict'：传什么，拿到的this就是什么
+    *fn.call(undefined): undefined
+    *fn.call(null):null;
+    *fn.call():undefined
+
+    在非严格模式下：
+    * 不传：window--fn.call();
+    * 传null:window --fn.call(null);
+    * 传undefined：window--fn.call(undefined);
+7.类数组专数组
+类数组：1）arguments 2）元素集合
+1)关于arguments这个类数组转数组：[].slice.call(arguments)  --各大浏览器都兼容；
+2)关于元素集合，只在标准浏览器下支持；
+8.throw new Error('我是出错的原因:'+e);//手动抛出错误，同时阻断程序的执行；
+9.浏览器异常捕获
+因为无论走try，还是走catch，都会走finally,所以，一般情况下，finally可以不写；
+    try{//当浏览器支持，走try中
+        alert(a)
+    }catch(e){//当浏览器不支持，报错的时候，走catch
+        alert('报错啦：'+e)
+    }finally{
+        alert('我是打酱油的')
+    }
+
+10.DOM映射：页面结构和元素集合之间存在相互映射的关系；
+当页面结构发生变动的时候，元素集合会自动发生改变
+当元素结合发生变动的时候，页面结构会自动跟着改变；
+11.注意啦：
+1）在HTML页面中拿到的内容 和 在txt中拿到的内容，都是字符串；
+2）在JS页面中的东西，都是JS代码；
+12.readyState的5种状态
+    0：请求未初始化（还没有调用 open()）。
+    1：请求已经建立，但是还没有发送（还没有调用 send()）。
+    2：请求已发送，正在处理中（通常现在可以从响应中获取内容头）。
+    3：请求在处理中；通常响应中已有部分数据可用了，但是服务器还没有完成响应的生成。
+    4：响应已完成；您可以获取并使用服务器的响应了。
+13. 排序优化这里做的几部：
+1）先处理固定值1为变量n,给变量n传的参数-当前被点击按钮的索引；
+2)让class名为cursor的按钮，可以发生点击事件；
+3）处理汉字的排序
+4)点击哪个按钮，让哪个按钮的flag*=-1；同时，让其他未被点击的按钮恢复成-1;
+
+
+
+
+

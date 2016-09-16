@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //makeArray:类数组 转 数组
+    function makeArray(arg){
+        var ary=[];
+        try{
+            ary=[].slice.call(arg);
+        }catch(e){
+            for(var i=0; i<arg.length; i++){
+                ary.push(arg[i])
+            }
+        }
+        return ary;
+    }
+</script>
+</body>
+</html>

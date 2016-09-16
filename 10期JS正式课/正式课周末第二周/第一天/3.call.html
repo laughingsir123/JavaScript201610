@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var obj={};
+   /* Function.prototype.call=function(){
+        //this->fn这个实例
+        //1.把this这个实例--fn中的"this关键字"(本质：this关键字是字符串)变成call的第一个参数；
+        this();//fn2()
+    }*/
+    function fn1(){
+        alert(1);
+    }
+    function fn2(){
+        alert(2)
+    }
+    //fn1.call(fn2);
+    fn1.call.call.call.call.call.call(fn2);
+    /*function fn(n,m){
+        alert(this+(n+m))//注意：如果call点前面的函数中，没有this关键字，就不替换this了；
+    }
+    fn.call(obj,2,3); //作用：改变this指向
+    /!*
+    * 1.把call点前面的函数fn中的this关键字，变为call的第一个参数；
+    * 2.call的第二个参数开始，一个个的给call点前面的函数fn传参；
+    * 3.fn这个函数立即执行了；
+    * *!/
+*/
+</script>
+</body>
+</html>

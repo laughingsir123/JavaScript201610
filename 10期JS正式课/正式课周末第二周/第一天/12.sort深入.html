@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div>23</div>
+<div>19</div>
+<div>45</div>
+<div>8</div>
+<script src="utils.js"></script>
+<script>
+    var aDiv=document.getElementsByTagName('div');
+    //思路1：性能不好
+    /*var ary=[];
+    for(var i=0; i<aDiv.length; i++){//进行了4次DOM操作
+        ary.push(aDiv[i].innerHTML);
+    }
+    ary.sort(function(a,b){ return a-b});
+    for(var i=0; i<aDiv.length; i++){
+        aDiv[i].innerHTML=ary[i]; //进行了4次DOM操作
+    }*/
+    //思路2：
+    //1.类数组转数组
+    var ary=utils.makeArray(aDiv);
+    //2.sort排序
+    ary.sort(function(a,b){
+        return a.innerHTML- b.innerHTML;
+    });
+    //3.把排好序的数组重新插入页面
+    for(var i=0; i<ary.length; i++){//4次DOM操作；
+        document.body.appendChild(ary[i]);
+    }
+</script>
+</body>
+</html>

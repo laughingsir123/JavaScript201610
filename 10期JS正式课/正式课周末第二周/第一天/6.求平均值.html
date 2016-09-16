@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //求平均数：去掉一个最高分，去掉一个最低分
+    function average(){
+        //1.把类数组转为数组
+        /*var ary=[];
+        for(var i=0; i<arguments.length; i++){
+            ary.push(arguments[i]);
+        }*/
+        //var ary=Array.prototype.slice.call(arguments);
+        var ary=[].slice.call(arguments);
+        //2.sort排序
+        ary.sort(function(a,b){
+            return a-b;
+        });
+        //3.掐头去尾
+        ary.pop();
+        ary.shift();
+        //4.计算并且输出
+        return (eval(ary.join('+'))/ary.length).toFixed(2);
+    }
+    alert(average(0.7,1.777,9.77,7.7,7.777));
+</script>
+</body>
+</html>
