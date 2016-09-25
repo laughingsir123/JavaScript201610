@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        div{
+            width: 200px;
+            height: 200px;
+            padding:10px;
+            border: 20px solid red;
+            margin:30px;
+            background: lightgreen;
+            overflow: hidden;
+            opacity: 0.1;
+            filter:alpha(opacity=10); /*当用户输入opacity来获取透明度值的时候，在IE下，实际是获取filter的值*/
+        }
+    </style>
+</head>
+<body style="height:1000px;">
+<div id="div" style="height: 500px;">《解密》是华策影视出品的青春励志谍战剧，根据作家麦家同名小说改编，由安建执导，冯骥编剧，陈学冬、颖儿、经超、张哲瀚、郭京飞、印小天、安以轩等人主演。该剧围绕“数学奇才”容金珍破解“超级密码”紫密、黑密，展开了一段隐秘而伟大...啊《解密》是华策影视出品的青春励志谍战剧，根据作家麦家同名小说改编，由安建执导，冯骥编剧，陈学冬、颖儿、经超、张哲瀚、郭京飞、印小天、安以轩等人主演。该剧围绕“数学奇才”容金珍破解“超级密码”紫密、黑密，展开了一段隐秘而伟大...</div>
+<script src="utils.js"></script>
+<script>
+    var oDiv=document.getElementById('div');
+    alert(utils.getCss(oDiv,'opacity'))
+    /*function getCss(curEle,attr){
+        var val=null;
+        var reg=null;
+        if('getComputedStyle' in window){
+            val=getComputedStyle(curEle,false)[attr];
+        }else{//这里是IE678浏览器
+            if(attr === 'opacity'){//当用户输入opacity时，实际上IE678下想获取的是filter的值；
+                val=curEle.currentStyle.filter; //‘alpha(opacity=10)’;
+                reg=/^alpha\(opacity[:=](\d+)\)$/;
+                return reg.test(val)?reg.exec(val)[1]/100:1;
+            }else{
+                val=curEle.currentStyle[attr];
+            }
+
+        }
+        //如果写的是'+200px' '-200.333px';这种格式的，都不要单位
+        reg=/^([+-])?(\d+(\.\d+)?(px|pt|em|rem))$/i;
+        return reg.test(val)?parseFloat(val):val;
+    }*/
+</script>
+</body>
+</html>

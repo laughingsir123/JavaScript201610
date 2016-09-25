@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            list-style: none;
+        }
+        div{
+            width: 1100px;
+            margin:0 auto;
+        }
+        div ul{
+            width: 200px;
+            margin:0 10px;
+            /*height和background展示完效果后，立即注释，否则，会影响瀑布流的效果*/
+            /*height: 10px;
+            background: red;*/
+            float: left;
+        }
+        div ul li{
+            width: 100%;
+            font-size: 50px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <ul></ul>
+    <ul></ul>
+    <ul></ul>
+    <ul></ul>
+    <ul></ul>
+</div>
+<script src="utils.js"></script>
+<script>
+    var aUl=document.getElementsByTagName('ul');
+    var n=0;
+    //核心原理：把创建出来的li，都插入到最短的ul中；
+    function createLi(){//高度随机，背景随机；
+        var oLi=document.createElement('li');
+        oLi.style.height=utils.rnd(100,300)+'px';
+        oLi.style.background='rgb('+utils.rnd(0,255)+','+utils.rnd(0,255)+','+utils.rnd(0,255)+')';
+        return oLi;
+    }
+    //每创建一个li，都往"最短的ul"中插入一个li；
+    li50();
+    window.onscroll=function(){
+        var scrollBottom=utils.win('scrollTop')+utils.win('clientHeight');
+        //clientHeight：设定容器的固定宽高+padding； scrollHeight：上padding+内容的高度
+        if(scrollBottom>=document.body.scrollHeight){
+            li50();
+        }
+    };
+    function li50(){
+        for(var i=0; i<50; i++){
+            var oLi=createLi();
+            oLi.innerHTML=++n;
+            //1.类数组转数组
+            var ary=utils.makeArray(aUl);
+            //2.数组排序
+            ary.sort(function(a,b){
+                return a.offsetHeight- b.offsetHeight;
+            });
+            //3.把li插入到最短的ul中
+            ary[0].appendChild(oLi);
+        }
+    }
+</script>
+</body>
+</html>

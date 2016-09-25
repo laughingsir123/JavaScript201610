@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        html,body{
+            height: 1000%;
+            background: -webkit-linear-gradient(top,lightgreen,lightblue,lightcoral,lightskyblue);
+        }
+        a{
+            display: block;
+            width: 100px;
+            height:100px;
+            background: darkgreen;
+            border-radius: 50%;
+            position: fixed;
+            right:20px;
+            bottom:20px;
+            text-decoration: none;
+            font-size: 30px;
+            text-align: center;
+            line-height: 100px;
+            color: white;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<a href="javascript:void(0);">toTop</a>
+<script src="utils.js"></script>
+<script>
+    var oBtn=document.getElementsByTagName('a')[0];
+    var bOk=false;
+    var timer=null;
+    window.onscroll=computedDisplay; //onscroll事件的出发，受两方面的影响：手动+定时器操作
+    function computedDisplay(){
+        if(bOk) clearInterval(timer);
+        bOk=true;
+        console.log(bOk)
+        if(utils.win('scrollTop')>utils.win('clientHeight')){
+            oBtn.style.display='block';
+        }else{
+            oBtn.style.display='none';
+        }
+    }
+    oBtn.onclick=function(){
+        var target=utils.win('scrollTop');
+        var duration=1000;
+        var interval=30;
+        var step=target/duration*interval;
+        //每次在最新的距离上-step；再重新设置新距离;
+        clearInterval(timer);
+        timer=setInterval(function(){ //只受定时器的影响
+            var curTop=utils.win('scrollTop');
+            if(curTop<=0){
+                clearInterval(timer);
+                window.onscroll=computedDisplay;
+                return;
+            }
+            curTop-=step;
+            utils.win('scrollTop',curTop);
+            bOk=false;
+            console.log(bOk)
+        },interval)
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        html,body{
+            height: 300%;
+        }
+        p{
+            width: 400px;
+            height: 200px;
+            line-height: 200px;
+            background: url("img2/default.gif") no-repeat center #e1e1e1;
+            position: absolute;
+            top:1000px;
+            text-align: center;
+        }
+        p img{
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<p><img src=""  realImg="img2/1.0.jpg" alt=""/></p>
+<script src="utils.js"></script>
+<script>
+    var oP=document.getElementsByTagName('p')[0];
+    var oImg=document.getElementsByTagName('img')[0];
+    //当划动滚动条的时候，只有图片满足加载条件才会加载；
+    window.onscroll=function(){
+        var scrollBottom=utils.win('scrollTop')+utils.win('clientHeight');
+        var imgPos=utils.offset(oImg).top+oImg.offsetHeight;
+        //当imgPos《=scrollBottom时，开始加载图片
+        if(imgPos<=scrollBottom) {
+            lazyImg();
+        }
+    }
+    function lazyImg(){
+        if(oImg.loaded) return;//已经加载过，就不再重复加载；
+        //1.创建临时图片
+        var tmpImg=new Image;
+        //2.给临时图片的地址赋值
+        tmpImg.src=oImg.getAttribute('realImg');
+        //3.校验地址
+        tmpImg.onload=function(){//图片加载成功
+            //3.1把正确地址赋值给真正的img标签
+            oImg.src=this.src;
+            //3.2释放tmpImg这个临时标签
+            tmpImg=null;
+            //3.3避免重复加载；
+            oImg.loaded=true;
+        };
+        tmpImg.onerror=function(){//图片加载失败
+            //1.避免重复加载
+            oImg.loaded=true;
+            //2.释放tmpImg
+            tmpImg=null;
+            //3.替换背景图-显示一张加载失败的图片
+            oP.style.background='url("img2/error.gif") no-repeat center #e1e1e1'
+        };
+    }
+</script>
+</body>
+</html>

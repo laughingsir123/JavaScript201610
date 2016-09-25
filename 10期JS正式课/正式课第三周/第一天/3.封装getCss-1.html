@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        div{
+            width: 200px;
+            height: 200px;
+            padding:10px;
+            border: 20px solid red;
+            margin:30px;
+            background: lightgreen;
+            overflow: hidden;
+
+        }
+    </style>
+</head>
+<body style="height:1000px;">
+<div id="div" style="height: 500px;">《解密》是华策影视出品的青春励志谍战剧，根据作家麦家同名小说改编，由安建执导，冯骥编剧，陈学冬、颖儿、经超、张哲瀚、郭京飞、印小天、安以轩等人主演。该剧围绕“数学奇才”容金珍破解“超级密码”紫密、黑密，展开了一段隐秘而伟大...啊《解密》是华策影视出品的青春励志谍战剧，根据作家麦家同名小说改编，由安建执导，冯骥编剧，陈学冬、颖儿、经超、张哲瀚、郭京飞、印小天、安以轩等人主演。该剧围绕“数学奇才”容金珍破解“超级密码”紫密、黑密，展开了一段隐秘而伟大...</div>
+<script>
+    var oDiv=document.getElementById('div');
+    //alert(oDiv.currentStyle.overflow)//兼容IE浏览器
+    //alert(getComputedStyle(oDiv,false)['height'])//兼容标准浏览器
+
+    //alert(getCss(oDiv,'height'))
+    //1.try..catch...封装-浏览器异常捕获
+    //问题：只有try里面报错的时候，才会走catch，所以，无论浏览器是否兼容，都会走try;--比较耗性能，不建议；
+    //getCss:功能-获取非行间样式；--获取当前元素的某个样式
+    /*function getCss(curEle,attr){
+        var val=null;
+        try{
+            val=getComputedStyle(curEle,false)[attr];
+        }catch(e){
+            val=curEle.currentStyle[attr];
+        }
+        return val;
+    }*/
+    //2.通过属性判断：--非常简易，也是最常用的
+    //alert(window.getComputedStyle)
+    //alert(typeof window.getComputedStyle === 'function')
+    //alert('getComputedStyle' in window)
+    /*function getCss(curEle,attr){
+        var val=null;
+        if('getComputedStyle' in window){
+            val=getComputedStyle(curEle,false)[attr];
+        }else{
+            val=curEle.currentStyle[attr];
+        }
+        return val;
+    }*/
+    //3.通过判断浏览器的详细信息做兼容处理--大招--不到万不得已，一般不用；
+    //var reg=/MSIE (6|7|8)/g;
+    //alert(window.navigator.userAgent.search(reg));
+   // alert(window.navigator.userAgent.match(reg));
+     /*alert(reg.test(navigator.userAgent))*/
+    /*function getCss(curEle,attr){
+        var val=null;
+        if(/MSIE (6|7|8)/g.test(navigator.userAgent)){//IE6，7,8
+            val=curEle.currentStyle[attr];
+        }else{
+            val=getComputedStyle(curEle,false)[attr];
+        }
+        return val;
+    }*/
+
+</script>
+</body>
+</html>

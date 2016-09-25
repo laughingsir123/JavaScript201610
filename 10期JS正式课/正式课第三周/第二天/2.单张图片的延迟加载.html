@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        html,body{
+            height: 300%;
+        }
+        p{
+            width: 400px;
+            height: 200px;
+            line-height: 200px;
+            background: url("img2/default.gif") no-repeat center #e1e1e1;
+            position: absolute;
+            top:1000px;
+            text-align: center;
+        }
+        p img{
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<p><img src=""  realImg="img2/1.jpg" alt=""/></p>
+<script src="utils.js"></script>
+<script>
+    var oP=document.getElementsByTagName('p')[0];
+    var oImg=document.getElementsByTagName('img')[0];
+    //当划动滚轮的时候，会触发onscroll事件；
+    window.onscroll=function(){
+        var scrollBottom=utils.win('scrollTop')+utils.win('clientHeight');
+        var imgPos=utils.offset(oImg).top+oP.offsetHeight;
+        if(imgPos<=scrollBottom){//当满足条件的时候，让图片开始延迟加载；
+            lazyImg();
+        }
+    }
+    function lazyImg(){
+        if(oImg.loaded) return;//避免重复加载；
+        var tmpImg=new Image; //'<img>'
+        tmpImg.src=oImg.getAttribute('realImg');
+        tmpImg.onload=function(){//当加载成功的时候；
+            oImg.src=this.src;
+            oImg.loaded=true;//避免重复加载
+            tmpImg=null;
+            console.log('success')
+        };
+        tmpImg.onerror=function(){
+            oImg.loaded=true;//避免重复加载
+            tmpImg=null;
+            oP.style.background='url("img2/error.gif") no-repeat center #e1e1e1';
+        };
+    }
+</script>
+</body>
+</html>

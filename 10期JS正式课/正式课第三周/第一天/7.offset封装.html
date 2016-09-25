@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" id="html">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        div{
+            padding:50px;
+            border: 20px solid black;
+            font-size: 50px;;
+        }
+        #box1{
+            width: 800px;
+            height: 400px;
+            background: red;
+            position: relative;
+        }
+        #box2{
+            width: 600px;
+            height: 300px;
+            background: green;
+        }
+        #box3{
+            width: 400px;
+            height: 200px;
+            background: blue;
+
+        }
+    </style>
+</head>
+<body id="body">
+<div id="box1">box1
+    <div id="box2">box2
+        <div id="box3">box3</div>
+    </div>
+</div>
+<script>
+    var oDiv1=document.getElementById('box1');
+    var oDiv2=document.getElementById('box2');
+    var oDiv3=document.getElementById('box3');
+    //目的：求oDiv3到body的距离：left top; {left:l,top:t};
+    function offset(curEle){
+        var l=curEle.offsetLeft;
+        var t=curEle.offsetTop;
+        var par=curEle.offsetParent;
+        while(par){
+            //在真正的IE8浏览器中，offsetLeft中已经包含了边框，所以我们不需要重复累加；
+            //只有不是IE8，才会累加边框
+            if(window.navigator.userAgent.indexOf('MSIE 8.0') === -1){
+                l+=par.clientLeft;//边框的累加
+                t+=par.clientTop;//边框的累加
+            }
+            l+=par.offsetLeft;
+            t+=par.offsetTop;
+            par=par.offsetParent;//依据定位父级，再找他的定位父级，这样，总有一天不满足循环条件，如果不写这句，就会死循环；
+        }
+        return {left:l,top:t}
+    }
+    console.log(offset(oDiv3))
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

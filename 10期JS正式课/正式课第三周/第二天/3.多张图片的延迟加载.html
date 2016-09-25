@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        html,body{
+            height: 200%;
+        }
+        *{
+            margin:0;
+            padding:0;
+        }
+        p{
+            width: 400px;
+            height: 200px;
+            background: url("img2/default.gif") no-repeat center #e1e1e1;
+        }
+        p img{
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div style="height: 1000px"></div>
+<p><img src="" realImg="img2/1.jpg" alt=""/></p>
+<p><img src="" realImg="img2/2.0.jpg" alt=""/></p>
+<p><img src="" realImg="img2/3.jpg" alt=""/></p>
+<p><img src="" realImg="img2/4.jpg" alt=""/></p>
+<p><img src="" realImg="img2/5.jpg" alt=""/></p>
+<script src="utils.js"></script>
+<script>
+    var aP=document.getElementsByTagName('p');
+    var aImg=document.getElementsByTagName('img');
+    window.onscroll=function(){
+        var scrollBottom=utils.win('scrollTop')+utils.win('clientHeight');
+        for(var i=0; i<aImg.length; i++){
+            var cur=aImg[i];
+            var imgPos=utils.offset(cur).top+cur.offsetHeight;
+            if(imgPos<=scrollBottom){
+                lazyImg(aImg[i]);
+            }
+        }
+    };
+    function lazyImg(img){
+        if(img.loaded) return;//避免重复加载；
+        //1.创建临时图片标签
+        var tmpImg=new Image;
+        //2.给图片标签赋值正确的地址
+        tmpImg.src=img.getAttribute('realImg');
+        console.log(tmpImg.src)
+        //3.校验地址
+        tmpImg.onload=function(){//图片地址正确
+            //把正确的地址赋值给真正的img标签
+            img.src=this.src;
+            //释放tmpImg标签
+            tmpImg=null;
+            //避免重复加载
+            img.loaded=true;
+        };
+        tmpImg.onerror=function(){//图片地址错误
+            //释放tmpImg标签
+            tmpImg=null;
+            //避免重复加载
+            img.loaded=true;
+            //更改背景图
+            img.parentNode.style.background='url("img2/error.gif") no-repeat center #e1e1e1'
+        };
+    }
+</script>
+</body>
+</html>

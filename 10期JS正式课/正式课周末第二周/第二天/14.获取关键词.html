@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //http://image.baidu.com/search/detail?ct=503316480&z=0&ipn=d;
+    //aim:{ct:503316480,z:0,ipn:d}
+    var str='http://image.baidu.com/search/detail?ct=503316480&z=0&ipn=d';
+    var obj={};//创建一个对象
+    var reg=/([^?=&]+)=([^?=&]+)/g;
+    str.replace(reg,function($0,$1,$2){
+        obj[$1]=$2;
+    });
+    console.log(obj)
+</script>
+</body>
+</html>

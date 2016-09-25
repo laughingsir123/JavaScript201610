@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            list-style: none;
+        }
+        div{
+            width:1100px;
+            margin:0 auto;
+        }
+        div ul{
+            float: left;
+            width: 200px;
+            margin:0 10px;
+        }
+        div ul li{
+            font-size: 50px;
+            color:white;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <ul></ul>
+    <ul></ul>
+    <ul></ul>
+    <ul></ul>
+    <ul></ul>
+</div>
+<script src="utils.js"></script>
+<script>
+    var aUl=document.getElementsByTagName('ul');
+    var n=0;
+    //动态创建的li元素，高度是随机的，背景色也是随机的；
+    function rnd(n,m){
+        n=Number(n);
+        m=Number(m);
+        if(isNaN(n)||isNaN(m)){//n和m有效数字的判断
+            return Math.random()//当拿到0-1之间的随机小数，就代表参数传错了
+        }
+        if(n>m){//如果n大于m，需要交换位置
+            var tmp=m;
+            m=n;
+            n=tmp;
+        }
+        return Math.round(Math.random()*(m-n)+n);
+    }
+    function createLi(){
+        var oLi=document.createElement('li');
+        oLi.style.height=rnd(100,300)+'px';
+        oLi.style.background='rgb('+rnd(0,255)+','+rnd(0,255)+','+rnd(0,255)+')';
+        return oLi;
+    }
+    //动态创建50个元素
+    li50();
+    function li50(){
+        for(var i=0; i<50; i++){
+            var oLi=createLi();
+            oLi.innerHTML=++n;
+            //1.类数组转数组
+            var ary=utils.makeArray(aUl);
+            //2.数组排序
+            ary.sort(function(a,b){
+                return a.offsetHeight- b.offsetHeight;
+            })
+            //3.往最短的ul里面插入li；
+            ary[0].appendChild(oLi);
+        }
+    }
+</script>
+</body>
+</html>

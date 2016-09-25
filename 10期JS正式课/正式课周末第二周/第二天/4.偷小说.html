@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<textarea  id="t1" cols="40" rows="20">
+     <p class="tx descr">内容简介：<span class="text">九死一生回到都市的赵纯良，还没来得及享受美好的人生，就意外的接到了来自家里的任务。为了能够顺利完成任务，赵纯良化身化妆品公司小保安队长。本以为轻松的任务，却没想到牵扯出了莫大的阴谋。且看保安队长赵纯良如何横行于美女如云的化妆品公司，如何从一个小小的保安队长，成长为商界大亨，乃至纵横世界的绝世枭雄。 2015年老施全新爆笑力作——极品富二代，爆笑来袭 （...</span>
+     </p>
+                <p class="tx uptx">最新章节：<a href="http://www.17k.com/chapter/1085709/26263557.html" rel="nofollow" target="_blank" class="redtx">第一千四百五十九章 瞬杀三人</a></p>
+
+</textarea>
+<input type="button" value="点击切换" id="btn"/>
+<textarea  id="t2" cols="40" rows="20"></textarea>
+<script>
+    var oT1=document.getElementById('t1');
+    var oT2=document.getElementById('t2');
+    var oBtn=document.getElementById('btn');
+    oBtn.onclick=function(){
+        var reg=/<[^<>]+>/g;
+        oT2.value=oT1.value.replace(reg,'')
+    }
+
+
+</script>
+</body>
+</html>

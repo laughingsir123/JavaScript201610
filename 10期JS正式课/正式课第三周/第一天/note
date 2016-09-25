@@ -1,0 +1,81 @@
+1.css盒子模型由4部分组成：设定的宽高+padding+border+margin；
+2.JS盒子模型：通过JS的属性和方法去获取元素身上的样式；
+JS中提供获取元素样式的属性和方法：
+1）client系列：clientWidth clientHeight  clientLeft clientTop;
+2) offset系列：offsetWidth offsetHeight offsetLeft offsetTop offsetParent;
+3) scroll系列：scrollWidth scrollHeight scrollLeft scrollTop;
+3.分析思路：1）有什么构成 2）是否受内容溢出的影响
+1）client系列：
+    clientWidth/height:设定的宽高+padding值；
+    clientLeft/top:border值；left指：borderLeft值； 同理top；
+    跟内容是否溢出：无关
+2）offset系列：
+    offsetWidth/height:clientWidth+border/clientHeight+border;
+    offsetLeft/offsetTop:当前元素的外边框距离定位父级的内边框之间的距离；
+    跟内容是否溢出：无关;
+3) scroll系列：
+    scrollWidth/Height:
+        1)在内容溢出的情况下：scrollHeight是约等于 上padding+内容的高度； 同理：scrollWidth；
+        2）在内容没有溢出的情况下：scrollHeight==clientHeight; scrollWidth==clientWidth
+        为何是约等于：
+        1)因为在内容溢出的情况下，不同浏览器拿到的scrollHeight值不同
+        2）在同一浏览器下，是否溢出隐藏，拿到的值也不相同；
+    scrollTop/Left:被浏览器卷去的高度/宽度；
+4.盒子模型的一些问题：
+1）通过盒子模型拿到的值，都是整数，没有小数--没法解决，它是系统提供的方法
+2）盒子模型拿到的值，都是复合值，没法求出单独的 宽 或 高； --封装getCss(获取非行间样式)
+3）浏览器盒子模型的兼容处理：--win封装
+可视区的宽高
+document.documentElement.clientWidth||document.body.clientWidth;
+document.documentElement.clientWidth=document.body.clientWidth='200px';
+被浏览器卷去的高度
+document.documentElement.scrollTop||document.body.scrollTop;
+4）无法求出盒子距离body的距离-封装offset:求盒子模型的偏移量;
+5.关于浏览器处理兼容的几种方式：
+1）浏览器异常捕获 try...catch..:
+    try{
+        val=getComputedStyle(curEle,false)[attr];
+    }catch(e){
+        val=curEle.currentStyle[attr]
+    }
+2)属性判断的方式有三种：
+    1）'getComputedStyle' in window
+    2)window.getComputedStyle
+    3)typeof window.getComputedStyle
+3)浏览器判断
+    1)if(/MSIE (6|7|8)/g.test(window.navigator.userAgent));//IE浏览器
+    2)if(window.navigator.userAgent.search(/MSIE (6|7|8)/g) === -1) //标准浏览器
+    3）if(window.navigator.userAgent.match(reg)) //IE浏览器
+6.lastIndex:开始查找的位置；当加了全局g的时候，lastIndex每次从找到内容的下一项内容的索引开始；
+能够影响lastIndex的东西有两个：
+    1）exec
+    2）test
+7.可以通过RegExp.$n去拿小分组，但是前面一定要配合test or  exec;
+因为只有test和exec能够影响lastIndex；
+RegExp.$1拿的是第一个小分组，
+。。。。RegExp.$n最多只能拿到RegExp.$9; 比$9大的，拿到的都是undefined；
+8.如果获取元素--一定要有返回值
+设置元素--不需要返回值；
+9.如何用伪类清除浮动？
+    display:'block',
+    content:'',
+    clear:both
+10.定位父级和结构父级的最大标签：
+结构父级 最大标签为html标签；
+定位父级 最大标签为body
+.....................................
+ 作业：
+ 重要）国庆来的-》所有的笔记在自己的笔记本上整理好；
+ 1）把今天所有笔记，按照自己思路，重新梳理一遍，并且，手写下来；-必须交
+ 2）明天早晨9点上课：--机试
+    1）getCss
+    2)offset
+    3)win
+    4)日期格式化
+    5）重复次数最多的单词和次数
+    6）不重复的随机验证码；
+
+
+
+
+

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var str='my name is {0},my age is {1} , i come form {2}';
+    var ary=['珠峰',8,'北京'];
+    //replace的实现原理跟exec一样；如果没有小分组，我们拿到的匿名函数的参数三个；
+    //如果有小分组，小分组从第二个参数开始；
+    str=str.replace(/{(\d)}/g,function($0,$1){
+        console.log(arguments)
+        return ary[$1]
+    });
+
+</script>
+</body>
+</html>

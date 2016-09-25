@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //(?:)
+    var str='zhufeng2017';
+    var reg=/(?:\d+)/g; //只匹配不捕获：只对你进行正则校验，但是不把你拎出来；
+    str.replace(reg,function(){
+        console.log(arguments)
+    })
+</script>
+</body>
+</html>

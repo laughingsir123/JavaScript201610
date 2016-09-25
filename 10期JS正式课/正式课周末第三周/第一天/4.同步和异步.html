@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*var n=1;
+    setTimeout(function(){
+        alert(++n)
+    },0)
+    while(n){};
+    alert(n)*/
+    var n=0;
+    setTimeout(function(){
+        n+=2;
+        alert(n)
+    },3)
+    setTimeout(function(){
+        n+=5;
+        alert(n)
+    },0)
+    for(var i=0; i<1000000; i++){};
+    alert(n)
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

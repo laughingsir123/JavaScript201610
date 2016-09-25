@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div{
+            padding:50px;
+            border: 20px solid black;
+            font-size: 30px;
+        }
+        #box1{
+            width: 600px;
+            height: 600px;
+            background: red;
+        }
+        #box2{
+            width: 400px;
+            height: 400px;
+            background: green;
+            position: relative;
+        }
+        #box3{
+            width: 200px;
+            height: 200px;
+            background: blue;
+        }
+    </style>
+</head>
+<body>
+<div id="box1">box1
+    <div id="box2">box2
+        <div id="box3">box3</div>
+    </div>
+</div>
+<script>
+    //求box3的offsetLeft
+    /*offset封装的思路：
+    * 1、先求出第一个定位父级,且到第一个定位父级的距离
+    * l=curEle.offsetLeft;
+    * t=curEle.offsetTop;
+    * par=curEle.offsetParent;
+    * 2.如果有定位父级的话，继续找定位父级的定位父级；
+    *
+    *
+    * */
+    var oBox3=document.getElementById('box3');
+    //console.log(oBox3.offsetLeft)
+    //[left,top]    offset()[0]->left offset()[1]
+    //{left:l,top:t}   offset().left  offset().top
+    //offset:当前元素距离body的偏移量：left top
+    alert(offset(oBox3).top)
+    function offset(curEle){
+       // 1、先求出第一个定位父级,且到第一个定位父级的距离
+        var l=curEle.offsetLeft;
+        var t=curEle.offsetTop;
+        var par=curEle.offsetParent;
+        //2.如果第一个定位父级存在，继续往上找他的定位父级，中间不断的累加left和border
+        while(par){
+            if(navigator.userAgent.indexOf('MSIE 8.0') === -1){//不是IE8的时候，还需要累加边框
+                l+=par.clientLeft;
+                t+=par.clientTop;
+            }
+            l+=par.offsetLeft;
+            t+=par.offsetTop;
+            par=par.offsetParent;
+        }
+        return {left:l,top:t}; //返回值必须是个对象；
+    }
+
+
+</script>
+</body>
+</html>

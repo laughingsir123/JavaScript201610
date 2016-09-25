@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //wood foot feel  book
+    var reg=/\w(\w)\1\w/;
+    /*重复子项：
+    * \1:跟第一个小分组一模一样；
+    * \2:跟第二个小分组一模一样；
+    * */
+    var reg=/\w(\w)(\w)\1\2/;
+    var str='aaaabbbbbcccccccccddddd';
+    str=str.replace(/(\w)\1+/g,function(){
+        console.log(arguments)
+    })
+</script>
+</body>
+</html>

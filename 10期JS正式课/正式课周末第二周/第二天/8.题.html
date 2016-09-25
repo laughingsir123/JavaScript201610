@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var str='20160514';
+    var ary=['零','壹','贰','叁','肆','伍','陆','柒','捌','玖'];
+    //需求：把字符串中的小写，都换成数组中的大写；
+    str=str.replace(/\d/g,function($1){
+        return ary[$1];
+    })
+    console.log(str)
+</script>
+</body>
+</html>

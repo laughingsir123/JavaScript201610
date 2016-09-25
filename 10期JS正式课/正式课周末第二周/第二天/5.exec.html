@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //exec属于正则的方法； test也是正则的方法
+    //replace属于字符串的方法
+    var str='zhufeng2016huigu2015zhanwang2017';
+    //var reg=/\d+?/g;
+    var reg=/\d+/g;
+    /*console.log(reg.lastIndex)
+    console.log(reg.exec(str))
+    console.log(reg.lastIndex)
+    console.log(reg.exec(str))
+    console.log(reg.lastIndex)
+    console.log(reg.exec(str))
+    console.log(reg.lastIndex)
+    console.log(reg.exec(str))
+    console.log(reg.lastIndex)
+    console.log(reg.exec(str))*/
+    //alert(str.match(reg));
+   // console.log(reg.exec(str));
+    /*var tmp='2016-9-17'; //{8}  8;
+    var reg=/(\d{4})[-](\d)[-](\d{2})/g;
+    console.log(reg.exec(tmp))
+    console.log(tmp.match(reg))*/
+    //如何用exec模拟出match的功能？
+    var res=reg.exec(str); //先找到一个符合规则的内容
+    var ary=[];
+    while(res){//只要有符合规则的内容，就继续查找；直到res=null;
+        ary.push(res[0]);
+        res=reg.exec(str);
+    }
+    alert(ary)
+
+</script>
+</body>
+</html>

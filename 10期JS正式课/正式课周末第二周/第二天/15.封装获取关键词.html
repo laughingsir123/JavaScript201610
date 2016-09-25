@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var str='http://image.baidu.com/search/detail?ct=503316480&z=0&ipn=d';
+    String.prototype.myQueryUrlPar=function(){
+        //this-实例str
+        var obj={};
+        var reg=/([^?=&]+)=([^?=&]+)/g;
+        this.replace(reg,function($0,$1,$2){
+            obj[$1]=$2;
+        })
+        return obj;
+    };
+    console.log(str.myQueryUrlPar());
+</script>
+</body>
+</html>

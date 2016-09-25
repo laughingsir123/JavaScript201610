@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" id="html">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        div{
+            padding:50px;
+            border: 20px solid black;
+            font-size: 50px;;
+        }
+        #box1{
+            width: 800px;
+            height: 400px;
+            background: red;
+        }
+        #box2{
+            width: 600px;
+            height: 300px;
+            background: green;
+            position: relative;
+        }
+        #box3{
+            width: 400px;
+            height: 200px;
+            background: blue;
+
+        }
+    </style>
+</head>
+<body id="body">
+<div id="box1">box1
+    <div id="box2">box2
+        <div id="box3">box3</div>
+    </div>
+</div>
+<script>
+    var oDiv1=document.getElementById('box1');
+    var oDiv2=document.getElementById('box2');
+    var oDiv3=document.getElementById('box3');
+    //需求：找到oDiv3最大的结构父级；
+    /*var oPar=oDiv3.parentNode; //先找到第一个结构父级，并且存在，才能继续往上找；
+    while(oPar){
+        alert(oPar.id);
+        oPar=oPar.parentNode;
+    }*/
+    //需求：找到oDiv3最大的定位父级；
+    /*var oPar=oDiv3.offsetParent;
+    while(oPar){
+        alert(oPar.id)
+        oPar=oPar.offsetParent;
+    }*/
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

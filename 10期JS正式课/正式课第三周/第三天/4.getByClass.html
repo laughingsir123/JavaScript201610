@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div class="box1 box2 box3 box4"></div>
+<div class="box1 box2 box3"></div>
+<div class="box1 box2"></div>
+<div class="box1"></div>
+<p class="box1       box2      box3       box4">我是p元素</p>
+<script src="utils.js"></script>
+<script>
+    var oP=document.getElementsByTagName('p')[0];
+    utils.removeClass(oP,'box1 box2 box3  box4')
+    //utils.addClass(oP,'box1 box3 box5')
+    //var aDiv=utils.getByClass('       box1       box2        ');
+    //console.log(utils.hasClass(oP,'box1'))
+    // ary[box1,box2,box3];
+    //校验 所有div.className,必须包含数组中的每一项，才算合格；
+    /*思路：
+    * 1.curEle.getElementsByClassName ->支持，就直接使用系统提供的方法；
+    *   1）系统提供的方法获取到的类数组，把类数组转数组；--为保证数据格式返回一致；
+    * 2.如果不支持：
+    *   1）把字符串转成数组
+    *   2）拿到当前容器下的所有元素
+    *   3）校验每个元素的className是否包含数组中的每一项；如果都包含，该元素就是我们要的；把该元素应该放入数组
+    *   4）最后返回数组
+    * */
+    //获取当前元素下所有包含strClass的元素
+   /* function getByClass(strClass,curEle){
+        curEle=curEle||document;
+        if('getComputedStyle' in window){//高级浏览器
+            return [].slice.call(curEle.getElementsByClassName(strClass))
+        }
+        //1）把字符串转成数组
+        var aryClass=strClass.replace(/(^ +)|( +$)/g,'').split(/\s+/g);
+        //2）拿到当前容器下的所有元素
+        var nodeList=curEle.getElementsByTagName('*');//!* 通配符，代表所有元素
+        var ary=[];
+        //3)校验每个元素的className是否包含数组中的每一项；如果都包含，该元素就是我们要的；把该元素应该放入数组
+        for(var i=0; i<nodeList.length; i++){
+            var curList=nodeList[i];
+            var bOk=true;//假设该元素身上包含数组中的每一项
+            for(var j=0; j<aryClass.length; j++){
+                var reg=new RegExp('\\b'+aryClass[i]+'\\b');
+                //如果有一项不合格，bOk就为false；
+                if(!reg.test(curList.className)){
+                    bOk=false;
+                }
+            }
+            //在整个过滤后，如果bOk还为true，说明该元素合格
+            if(bOk){
+                ary.push(curList)
+            }
+        }
+        return ary;
+    }*/
+</script>
+</body>
+</html>

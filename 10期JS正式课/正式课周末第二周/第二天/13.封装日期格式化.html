@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var strCode='2016-6-23     6:41:00';
+    //var strTmp='{0}年{1}月{2}日 {3}时{4}分{5}秒';
+    var strTmp='{0}年{1}月{2}日';
+    String.prototype.myFormatDate=function(tmp){
+        //this-》strCode这个实例
+        //1.把实例转数组
+        var ary=this.match(/\d+/g);
+        //2.用数组内容替换模板
+        tmp=tmp||'{0}年{1}月{2}日 {3}时{4}分{5}秒';
+        tmp=tmp.replace(/{(\d)}/g,function($0,$1){
+            var n=ary[$1];
+            //00》=0？'0'+Number(00)
+            return n>=0 && n<10? '0'+Number(n):''+n;
+        })
+        return tmp;
+    }
+    console.log(strCode.myFormatDate());
+</script>
+</body>
+</html>

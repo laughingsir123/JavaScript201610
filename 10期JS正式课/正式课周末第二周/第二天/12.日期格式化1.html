@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var strCode='2016-6-23 6:41:30';
+    //目的：实现数组
+    var reg=/(\d{4})[/-](\d{1,2})[-/](\d{1,2}) (\d{1,2})[:](\d{1,2})[:](\d{1,2})/g;
+    var ary=[];
+    strCode.replace(reg,function(){
+        ary=[].slice.call(arguments,1,arguments.length-2)
+    });
+
+    var strTmp='{0}年{1}月{2}日 {3}时{4}分{5}秒';
+    //var ary=['2016','9','17','17','17','3'];
+    strTmp=strTmp.replace(/{(\d)}/g,function($0,$1){
+        return ary[$1];
+    });
+    console.log(strTmp)
+</script>
+</body>
+</html>

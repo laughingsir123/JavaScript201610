@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        html,body{
+            height: 1000%;
+            background: -webkit-linear-gradient(top,darkgreen,lightgoldenrodyellow,lightcyan,lightcoral);
+        }
+        *{
+            margin:0;
+            padding:0;
+        }
+        div{
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            background: lightgreen;
+            border-radius: 50%;
+            position: fixed;
+            right:20px;
+            bottom:20px;
+            font-size:30px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="div">toTop</div>
+<script src="utils.js"></script>
+<script>
+    var oDiv=document.getElementById('div');
+
+    //2.第一屏不显示按钮，划动距离超过一屏，显示按钮
+    window.onscroll=function(){
+        if(utils.win('scrollTop')>utils.win('clientHeight')){
+            oDiv.style.display='block';
+        }else{
+            oDiv.style.display='none';
+        }
+    };
+    //1.点击按钮，回到顶部：
+    /*1.target：当前浏览器被卷去的高度，也就是要走的总距离
+    2.duration：总时间 3.interval：频率，多久走一次
+    通过以上三个条件，求出步长step:target/duration*interval;*/
+    oDiv.onclick=function(){
+        var target=utils.win('scrollTop');
+        var duration=1000;
+        var interval=30;
+        var step=target/duration*interval;
+        //开启定时器，每次在最新的距离上-step值
+        clearInterval(timer);
+        var timer=setInterval(function(){
+            var curTop=utils.win('scrollTop');//最新的距离
+            if(curTop<=0){
+                clearInterval(timer);
+                return;//阻断程序的执行
+            }
+            curTop-=step;
+            //重新设置总距离
+            utils.win('scrollTop',curTop);
+        },interval)
+    }
+</script>
+</body>
+</html>

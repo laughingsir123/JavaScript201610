@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            list-style: none;
+        }
+        img{
+            border: none;
+        }
+        div{
+            width: 1100px;
+            margin:0 auto;
+        }
+        div ul{
+            width: 200px;
+            margin:0 10px;
+            float: left;
+        }
+        div ul li{
+            width: 100%;
+            margin-bottom: 10px;
+            background: url("img2/default.gif") no-repeat center #e1e1e1;
+        }
+        div ul li img{
+            width: 100%;
+        }
+        .btn{
+            width: 80px;
+            height: 80px;
+            background: darkmagenta;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 80px;
+            position: fixed;
+            right:20px;
+            bottom:20px;
+            font-size: 30px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <ul>
+        <!--<li><img src="" realImg="img2/1.jpg" alt=""/></li>-->
+    </ul>
+    <ul></ul>
+    <ul></ul>
+    <ul></ul>
+    <ul></ul>
+</div>
+<script src="utils.js"></script>
+<div id="btn" class="btn">toTop</div>
+<script>
+    var aUl=document.getElementsByTagName('ul');
+    var aLi=document.getElementsByTagName('li');
+    var aImg=document.getElementsByTagName('img');
+    var oBtn=document.getElementById('btn');
+    var timer=null;
+    var bOk=false;
+    var ary=[
+        {imgSrc:'img2/1.jpg'},
+        {imgSrc:'img2/2.jpg'},
+        {imgSrc:'img2/3.jpg'},
+        {imgSrc:'img2/4.jpg'},
+        {imgSrc:'img2/5.jpg'},
+        {imgSrc:'img2/6.jpg'},
+        {imgSrc:'img2/7.jpg'},
+        {imgSrc:'img2/8.jpg'},
+        {imgSrc:'img2/9.jpg'},
+        {imgSrc:'img2/10.jpg'},
+    ];
+    //1.创建一个元素li,内容为图片；为了保证背景图比较好看，给li设置随机高度；
+    function createLi(){
+        var oLi=document.createElement('li');
+        oLi.style.height=utils.rnd(100,180)+'px';
+        oLi.innerHTML='<img src="" realImg="'+ary[utils.rnd(0,9)].imgSrc+'" alt=""/>';
+        return oLi;
+    }
+    //2.创建50个li,每创建一个，都插入ul中最短的；
+    function li50(){
+        for(var i=0; i<50; i++){
+            var oLi=createLi();
+            //1.类数组转数组
+            var ary=utils.makeArray(aUl);
+            //2.数组排序
+            ary.sort(function(a,b){
+                return a.offsetHeight- b.offsetHeight;
+            });
+            //3.把oLi插入最短的ul;
+            ary[0].appendChild(oLi);
+        }
+    }
+    //3.显示图片的封装
+    function showImg(){
+        //每张图片到body顶部的距离+图片自身的高度《scrollTop+clientHeight；
+        for(var i=0; i<aImg.length; i++){
+            var scrollBottom=utils.win('scrollTop')+utils.win('clientHeight');
+            var imgPos=utils.offset(aImg[i]).top+aLi[i].offsetHeight;
+            if(imgPos<scrollBottom){
+                lazyImg(aImg[i]);
+            }
+        }
+    }
+    function lazyImg(img){
+        if(img.loaded) return;
+        //1.创建临时img标签
+        var tmpImg=new Image;
+        //2.给临时img标签赋值正确的地址
+        tmpImg.src=img.getAttribute('realImg');
+        //3.校验地址
+        tmpImg.onload=function(){
+            //1.把正确的地址赋值给img;
+            img.src=this.src;
+            //让img父级的高度为auto；
+            img.parentNode.style.height='auto';
+            //2.释放临时标签tmpImg
+            tmpImg=null;
+            //3.避免重复加载
+            img.loaded=true;
+        }
+    }
+    function toTop(){
+        var target=utils.win('scrollTop');
+        var duration=1000;
+        var interval=30;
+        var step=target/duration*interval;
+        //开启定时器，每次在最新的距离上减去step步长
+        clearInterval(timer);
+        timer=setInterval(function(){//只有定时器在影响onscroll事件
+            var curTop=utils.win('scrollTop');
+            if(curTop<=0){
+                clearInterval(timer);
+                return;
+            }
+            curTop-=step;
+            utils.win('scrollTop',curTop);
+            bOk=false;
+        },interval)
+    }
+    //..........调用......
+    li50();
+    showImg();
+    oBtn.onclick=toTop;
+    window.onscroll=function(){//能触发滚轮事件有两种情况：手动+定时器
+        //计算浏览器卷去的高度+可视区的高度 跟 内容的高度进行比较
+        var scrollBottom=utils.win('scrollTop')+utils.win('clientHeight');
+        showImg();
+        if(bOk) clearInterval(timer);
+        bOk=true;
+        //第一屏按钮隐藏，当滚动条滚动距离超过一屏，显示按钮
+        if(utils.win('scrollTop')>utils.win('clientHeight')){
+            oBtn.style.display='block'
+        }else{
+            oBtn.style.display='none'
+        }
+        if(scrollBottom>=document.body.scrollHeight){
+            li50();
+        }
+    }
+</script>
+</body>
+</html>

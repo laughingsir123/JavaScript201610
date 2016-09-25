@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //[123,7688,8999,990]
+    var str='zhufeng123lsdkfjsld7688lksdjflks8999lskdjflks990';
+    /*var tmp='';
+    var ary=[];
+    for(var i=0; i<str.length; i++){
+        if(!isNaN(str[i])){
+            tmp+=str[i];
+        }else{
+            if(tmp.length){
+                ary.push(tmp);
+                tmp='';
+            }
+        }
+    }
+    if(tmp){
+        ary.push(tmp);
+        tmp='';
+    }
+    alert(ary);*/
+    alert(str.match(/\d+/g));
+
+
+
+</script>
+</body>
+</html>

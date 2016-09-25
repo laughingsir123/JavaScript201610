@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            list-style:none;
+        }
+        .box{
+            width: 800px;
+            height: 200px;
+            margin:50px auto;
+            position: relative;
+            border: 5px dashed lightgreen;
+            overflow: hidden;
+        }
+        .box ul{
+            height: 100%;
+            position: absolute;
+            left:0;
+            top:0;
+            overflow: hidden;
+        }
+        .box ul li{
+            float: left;
+            width: 200px;
+            height: 200px;
+        }
+        .box ul li img{
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="box" id="box">
+    <ul>
+        <li><img src="img/1.jpg" alt=""/></li>
+        <li><img src="img/2.jpg" alt=""/></li>
+        <li><img src="img/3.jpg" alt=""/></li>
+        <li><img src="img/4.jpg" alt=""/></li>
+    </ul>
+</div>
+<script>
+    var oBox=document.getElementById('box');
+    var oUl=oBox.getElementsByTagName('ul')[0];
+    var aLi=oUl.getElementsByTagName('li');
+    var left=oUl.offsetLeft;
+    console.log(left)
+    //1.把ul的内容扩充一倍；
+    oUl.innerHTML+=oUl.innerHTML;
+    //2.改变ul的宽度
+    oUl.style.width=aLi[0].offsetWidth*aLi.length+'px';
+    //3.不断的改变oUl的left值；
+    clearInterval(timer);
+    var timer=setInterval(function(){
+        left-=5;
+        if(left<=-oUl.offsetWidth/2){
+            left=0;
+        }
+        oUl.style.left=left+'px';
+    },30)
+</script>
+</body>
+</html>

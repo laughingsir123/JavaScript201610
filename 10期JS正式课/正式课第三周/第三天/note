@@ -1,0 +1,105 @@
+1.回到顶部：
+    1）点击回到顶部-》计算过步长+配合定时器
+    2）首屏隐藏按钮，超过一屏显示按钮
+    3）点击按钮立即隐藏--涉及window.onscroll的释放
+2.瀑布流：
+    1）创建一个li元素
+    2）创建50个元素，每次插入最短的ul中
+    3）滚轮事件中，根据条件，再创建50个；
+3.瀑布流+延迟加载+回到顶部
+    1）创建一个li元素，li的内容为图片，图片的realImg中存的随机的图片地址
+    2）创建50个元素，每次插入最短的ul中
+    3）“在滚轮事件中”，根据条件，再创建50个；
+    4）显示满足延迟加载的条件的图片
+    5）“在滚轮事件中”添加，满足延迟加载条件的图片--再次调用
+    6）点击按钮回到顶部
+    7）“在滚轮事件中”，判断第一屏隐藏，超过一屏按钮显示
+    8）利用开关思想，通过鼠标滚轮随时停止回到顶部的运动
+4.DOM复习
+    1.获取元素的方式 7
+    id
+    tagName
+    className --不兼容
+    name
+    document.documentElement --win
+    document.body
+    querySelector
+    querySelectorAll
+    2.节点类型
+                   nodeType       nodeName       nodeValue
+    文本节点          3             #text            文本内容
+    元素节点          1             大写的标签名       null
+    注释节点          8              #comment        注释内容
+    document节点     9              #document        null
+    3.节点关系：
+    parentNode
+    children
+    childNodes
+    previousSibling
+    nextSibling
+    firstChild
+    lastChild
+    4.元素的动态操作
+    1）动态创建
+        document.createElement('')
+        obj.cloneNode(boolean)
+    2)动态插入
+        父级.appendChild(curEle)
+        父级.insertBefore(newEle,oldEle)
+    3)动态删除和替换
+        父级.removeChild(curEle);
+        父级.replaceChild(newEle,oldEle);
+    ......................................................*:
+5.DOM封装
+    1)获取元素
+        1.getByClass() ->通过class名来获取元素
+        2.hasClass() //判断元素身上是否有这个class名 //判断的是一个class名
+        3.addClass() //添加class名
+        4.removeClass() //移出class名
+        5.getCss()  //获取样式
+        6.setCss()  //设置一个样式
+        7.setGroupCss() //设置一组样式
+        8.css(); //三合一
+        9.win();
+        10.offset()
+    2)节点
+        1.getChildren
+        2.prev
+        3.prevAll
+        4.next
+        5.nextAll
+        6.sibling //相邻元素
+        7.siblings //获取所有的兄弟元素
+        8.firstChild //获取第一个元素
+        9.lastChild //获取最后一个元素
+        10.index  //当前元素的索引
+    3）元素的动态操作：
+        1.appendChild() //把元素插入到容器的末尾
+        2.prependChild() //把元素插入到容器的开头
+        3.insertBefore() //插入到指定元素的前面
+        4.insertAfter() //插入到指定元素的后面
+
+    24+makeArray+jsonParse+rnd=27;
+    .................................
+    作业：
+    1.瀑布流+图片延迟加载+回到顶部
+    2.getByClass
+    3.hasClass
+    4.addClass
+    5.removeClas
+    6.setCss
+    7.getCss
+
+
+
+
+
+
+
+
+
+
+
+
+
+

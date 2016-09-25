@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var str='2016-9-20 18:7:0';
+    //1.把字符串提炼为数组 2.用数组配合replace替换模板；
+    String.prototype.myFormatDate=function(tmp){
+        //1.把字符串提炼为数组
+        var ary=this.match(/\d+/g);
+        //2.用数组配合replace替换模板；
+        tmp=tmp||'{0}年{1}月{2}日 {3}时{4}分{5}秒';
+        tmp=tmp.replace(/{(\d)}/g,function($0,$1){
+            var n=ary[$1];
+            return n>=0 && n<10?'0'+Number(n):''+n;
+        });
+        return tmp;
+    }
+    console.log(str.myFormatDate());
+    /*var tmp='{0}年{1}月{2}日 {3}时{4}分{5}秒';
+   // var ary=['2016','9','20','18','7','3'];
+    tmp=tmp.replace(/{(\d)}/g,function($0,$1){
+        return ary[$1];
+    })*/
+</script>
+</body>
+</html>

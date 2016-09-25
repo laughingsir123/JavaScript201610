@@ -1,0 +1,92 @@
+1.css盒子模型：手动设定的宽高+padding+border+margin
+2.通过JS的属性和方法，去获取元素的样式：
+3.JS中常见的属性和方法：
+    1）client系列：clientWidth clientHeight clientLeft clientTop;
+    2)offset系列：offsetWidth offsetHeight offsetLeft offsetTop offsetParent
+    3)scroll系列：scrollWidth scrollHeight scrollLeft scrollTop
+4.JS中常见的属性和方法 详细解释：
+    考虑方面：1）有什么构成 2）跟内容溢出是否有关
+1）client系列：
+    clientWidth、clientHeight：手动设定的宽/高+左右/上下padding;
+    clientLeft、clientTop:boder的宽度
+    不受内容溢出的影响--不能代表内容的高度
+2)offset系列：
+    offsetWidth/offsetHeight:手动设定的宽+左右padding+左右border==clientWidth+左右border
+    offsetLeft:当前元素的 外边框 距离 定位父级的 内边框 之间的距离；
+    offsetParent:定位父级
+    parentNode:结构父级
+    不受内容溢出的影响--不能代表内容的高度
+3）scroll系列：
+    scrollHeight:
+        内容溢出时：约定于 上padding+内容的高度
+        内容没溢出：跟clientHeight的值一样的；
+    为何约等于：
+        1）在内容溢出的情况下，不同浏览器拿到的offsetHeight不同
+        2）在同一浏览器下，元素是否隐藏，拿到的值也不同；
+    scrollTop:被浏览器卷去的高度；
+5.关于JS盒子模型存在的一些问题：
+1)以上JS属性只能拿到整数，无法拿到小数-》不解决
+2）以上JS属性只能拿到复合值，无法拿到元素身上单独的样式值-->getCss:获取非行间样式
+3）浏览器盒子模型的封装-win
+4)盒子模型偏移量的封装-offset
+6.常见的浏览器处理兼容的方式：重要
+1）属性判断：
+    1.window.getComputedStyle
+    2.'getComputedStyle' in window
+    3.typeof window.getComputedStyle=='function'
+2)浏览器异常捕获 try...catch(e)...
+3)浏览器信息判断
+    1.if(/MSIE (6|7|8)\.0/.test(window.navigator.userAgent)) //IE6-8
+    2.if(window.navigator.userAgent.match(/MSIE (6|7|8)\.0/)) //IE6-8
+       match返回的是数组，数组为真； match找不到，返回的null->false
+    3.if(window.navigator.userAgent.search(/MSIE (6|7|8)/) !== -1) //IE6-8
+7.getCss封装：
+1）先区分标准浏览器（getComputedStyle）和IE浏览器（currentStyle）
+2)处理单位，有单位的，都干掉了
+3）处理透明度
+8.RegExp
+RegExp.$1 --第一个小分组   ；他不受全局g的影响，但是用RegExp之前，一定要先影响lastIndex；能影响lastIndex的属性有两个（test，exec）
+注意。通过RegExp最多只能拿到$9；第九个小分组之后都拿不到；
+9.同步和异步
+同步：当前任务没做完，不会开始下一项；
+异步：当前任务没做完，不会等待，继续开始下一项；等后面的任务都执行完成，才会反过头来，执行前面已经准备好的任务；如果后面的任务没做完，不会回头做前面的任务；
+JS中基本都是同步：比如：循环
+JS中的异步有四种：
+1）事件
+2）定时器  -》window
+3）回调函数 -》一般情况也是window
+4）ajax
+10.每个浏览器对定时器都有一个最小时间的设置；
+定时器并不是越小越快，而是越小越不准确；
+11.a链接：
+    1）给href="#"or 不写 默认都是回到顶部
+    2）各个页面之间的跳转，用链接跳转
+    3）本页面之间的相互跳转，可以用锚点href="#ID"；
+    4）避免a链接的跳转和闪动，可以用href="javascript:;"
+                               href="javascript:void(0);"
+12.回到顶部：
+    1）点击按钮的时候，求出target：要走的总距离；scrollTop;
+    2）自己设定总时间duration=1000；设定频率：interval=10;
+    3)根据以上条件，求出：step=target/duration*interval
+    4)每次在最新的距离上-step；再重新设置新距离;
+第一版：三步-》点击按钮立即隐藏
+    1）点击按钮回到顶部：计算step=target/duration*interval;
+    2)手动滑动滚动条的时候，当浏览器被卷曲的高度大于一屏幕，显示按钮，否则，隐藏按钮
+    3）点击按钮立即隐藏；注意要受到onscroll事件的影响；
+13.回到顶部第二版
+    1）点击按钮回到顶部：计算step=target/duration*interval;
+    2）手动滑动滚动条的时候，当浏览器被卷曲的高度大于一屏幕，显示按钮，否则，隐藏按钮
+    3）点击按钮，开始往上运动，在运动的过程中滑动鼠标滚轮，随时可以停止运动；
+14.单张图片的延迟加载
+    1）一开始不让图片显示：把正确的图片地址赋值给自定义的realImg，图片显示的是默认的logo背景；
+    2）滑动滚动条的时候，当图片满足加载条件，才会开始延迟加载、懒加载
+        懒加载具体3步：
+        1.创建临时img标签
+        2.给临时的图片标签赋值真正的地址
+        3.校验地址
+15.多张图片的延迟加载
+
+
+
+
+

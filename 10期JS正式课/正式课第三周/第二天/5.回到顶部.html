@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        html,body{
+            height: 1000%;
+            background: -webkit-linear-gradient(top,darkgreen,lightgoldenrodyellow,lightcyan,lightcoral);
+        }
+        *{
+            margin:0;
+            padding:0;
+        }
+        div{
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            background: lightgreen;
+            border-radius: 50%;
+            position: fixed;
+            right:20px;
+            bottom:20px;
+            font-size:30px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="div">toTop</div>
+<script src="utils.js"></script>
+<script>
+    var oDiv=document.getElementById('div');
+    //2.只有滚动的距离大于一屏的时候，才让按钮显示；
+    window.onscroll=computedDisplay;
+    function computedDisplay(){
+        if(utils.win('scrollTop')>utils.win('clientHeight')){
+            oDiv.style.display='block';
+        }else{
+            oDiv.style.display='none';
+        }
+    }
+    //1.点击按钮回到顶部：计算步长
+    oDiv.onclick=function(){
+        //3.点击按钮立即隐藏
+        this.style.display='none';
+        window.onscroll=null;
+        var target=utils.win('scrollTop');
+        var duration=1000;
+        var interval=10;
+        var step=target/duration*interval;
+        clearInterval(timer);
+        var timer=setInterval(function(){
+            //求出最新的距离
+            var curTop=utils.win('scrollTop');
+            //满足条件关闭定时器
+            if(curTop<=0){
+                clearInterval(timer);
+                window.onscroll=computedDisplay;
+                return;
+            }
+            curTop-=step;
+            utils.win('scrollTop',curTop);
+        },interval)
+    }
+</script>
+</body>
+</html>

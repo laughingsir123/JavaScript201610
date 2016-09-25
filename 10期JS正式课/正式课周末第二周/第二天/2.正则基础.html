@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //var reg=/^\d$/; //字面量创建方式
+    //var reg=new RegExp('^\\d$') //实例创建
+    var str='珠峰';
+    //var reg=/""+str+""/; //字面量创建无法进行变量的拼接；
+    //alert(reg.test('"""""strrrr""'))
+    var reg=new RegExp('^'+str+'$');
+    alert(reg.test('12珠峰'))
+    var reg=/\d+/g; //
+</script>
+</body>
+</html>

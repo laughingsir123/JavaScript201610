@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //求出现次数最多的单词，以及出现多少次；
+    var str='asdfsdfAaaAsdfsasdsSssSsaaaaa';
+    //思路1：利用对象的一些知识
+    /*//1.利用对象不重名的特性；求出了每个单词出现的次数
+    var obj={};
+    for(var i=0; i<str.length; i++){
+        var cur=str[i];
+        if(obj[cur]){
+            obj[cur]++;
+            continue;
+        }
+        obj[cur]=1;
+    }
+    //2.求出现最多的次数--假设法
+    var max=obj.f;
+    for(var attr in obj){
+        if(obj[attr]>max){
+            max=obj[attr];
+        }
+    }
+    //3.求出现次数最多的单词：
+    var ary=[];
+    for(var attr in obj){
+        if(obj[attr]==max){
+            ary.push(attr);
+        }
+    }
+    alert(ary)*/
+    //思路2：利用重复子项
+    str=str.split('').sort(function(a,b){return a.localeCompare(b)}).join('');//链式操作，实现字符串从小到大的排序；
+    var max=0;
+    var maxStr='';
+    str=str.replace(/(\w)\1+/gi,function($0,$1){
+        if($0.length>max){
+            max=$0.length;
+            maxStr=$1;
+        }else if($0.length===max){//当出现次数一样的时候，进行字符串拼接
+            maxStr+=$1;
+        }
+    })
+
+
+
+</script>
+</body>
+</html>

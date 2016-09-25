@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html,body{
+            height: 200%;
+        }
+        p{
+            position:absolute;
+            top:1000px;
+            width: 400px;
+            height: 200px;
+            background:url("img2/default.gif") no-repeat center #e1e1e1;
+        }
+        p img{
+            width: 100%;
+            height: 100%;
+            display: block;
+
+        }
+    </style>
+</head>
+<body>
+<p><img src="" realImg="img2/1.jpg" alt=""></p>
+<script src="utils.js"></script>
+<script>
+    //需求：等图片整个都进入可视区，才让图片显示
+    /*
+    * 1.一开始图片不显示，先给他一个默认的logo展示
+    * 2.只有当图片满足offsetTop+img.height < scrollTop+clientHeight条件的时候，才让图片显示
+    * */
+    var oImg=document.getElementsByTagName('img')[0];
+    window.onscroll=function(){
+        var scrollBottom=utils.win('scrollTop')+utils.win('clientHeight');
+        var imgPos=utils.offset(oImg).top+oImg.offsetHeight;
+        if(imgPos<=scrollBottom){
+            //让图片显示：懒加载
+            lazyImg();
+        }
+    };
+    function lazyImg(){
+        if(oImg.loaded) return;
+        //1.创建一个临时的图片标签
+        var tmpImg=new Image;//document.createElement('img')
+        //2.给临时的图片标签赋值真正的地址
+        tmpImg.src=oImg.getAttribute('realImg');
+        //3.校验地址：成功-把地址赋给真正的img标签；失败-进行错误提示
+        tmpImg.onload=function(){//校验成功后要做的事情
+            oImg.src=this.src;
+            tmpImg=null;
+            oImg.loaded=true;
+        };
+        tmpImg.onerror=function(){//教研失败后要做的事情
+            oImg.parentNode.style.background='url("img2/error.gif") no-repeat center #e1e1e1';
+            oImg.loaded=true;
+        };
+    }
+</script>
+</body>
+</html>
