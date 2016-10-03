@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #div{
+            width: 200px;
+            height: 200px;
+            background: red;
+            position: absolute;
+            left:300px;
+            top:30px;
+        }
+        #target{
+            width: 1px;
+            height:300px;
+            background: #000;
+            position: absolute;
+            left:950px;
+        }
+    </style>
+</head>
+<body>
+<div id="div"></div>
+<div id="target"></div>
+<script src="utils.js"></script>
+<script>
+    /*
+    *t:time走了多长时间
+    *b:begin
+    *c:change 剩下要走的距离
+    * d:duration 多长时间走过去
+    * */
+    function  Linear(t,b,c,d){//linear公式，求出现在最新的位置；
+        return b+c/d*t;//初始位置+10分钟走了多远=新位置
+    }
+    var oDiv=document.getElementById('div');
+    // 以下都为linear求参数;
+    var target=950;
+    var begin=300; //b
+    var change=target-begin; //c
+    var duration=400; //d
+    var time=0;//t
+    //通过累加时间，再利用linear公式，来做运动
+    clearInterval(timer);
+    var timer=setInterval(function(){
+        time+=10;//总共走了多长时间；
+        if(time>=duration){
+            utils.css(oDiv,{left:target});
+            clearInterval(timer);
+            return;
+        }
+        //用linear公式求出最新的位置
+        var curLeft=Linear(time,begin,change,duration);
+        utils.css(oDiv,{left:curLeft});//设置最新的位置；
+
+    },10);
+</script>
+</body>
+</html>

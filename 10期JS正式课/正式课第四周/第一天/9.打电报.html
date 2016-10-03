@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body,html{
+            height: 100%;
+            background: #000;
+        }
+        div{
+            text-indent: 2em;
+        }
+        div span{
+            font-size:100px;
+            font-weight: bold;
+            color: white;
+            opacity: 0;
+            filter:alpha(opacity:0);
+        }
+    </style>
+</head>
+<body>
+    <div id="div1"><!--<span>中</span><span>国</span>--></div>
+</body>
+<script src="utils.js"></script>
+<script src="move3.js"></script>
+<script>
+    var oDiv=document.getElementById('div1');
+    var aSpan=oDiv.getElementsByTagName('span');
+    var str='国庆将至，不少车主都会选择自驾出游放松身心，而SUV因兼顾良好的动力和驾驶舒适度，成为自驾车辆的不二选择。与此同时，受政策、环保意识提高的影响，新能源SUV也正成为自驾游的热门之选。';
+    var n=0;
+    createSpan();
+    clearInterval(timer);
+    var timer=setInterval(function(){
+        if(n>=aSpan.length){
+            clearInterval(timer);
+            return;
+        }
+        animate(aSpan[n],{opacity:1},{duration:100})
+        n++;
+    },200)
+
+   function createSpan(){
+       var frg=document.createDocumentFragment();
+       for(var i=0; i<str.length; i++){
+           var oSpan=document.createElement('span');
+           oSpan.innerHTML=str[i];
+           frg.appendChild(oSpan);
+       }
+       oDiv.appendChild(frg);
+       frg=null;
+   }
+
+</script>
+</html>

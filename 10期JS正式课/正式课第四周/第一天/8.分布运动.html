@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin:10px;
+            float:left;
+            background: red;
+            opacity: 0;
+            filter:alpha(opacity=0);
+        }
+    </style>
+</head>
+<body>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+</body>
+<script src="utils.js"></script>
+<script src="move3.js"></script>
+<script>
+    var aDiv=document.getElementsByTagName('div');
+    var n=0;
+    clearInterval(timer);
+    //把n作索引，决定让第几个div显示；
+    var timer=setInterval(function(){
+        console.log('ok')
+        if(n>=aDiv.length) {
+            clearInterval(timer);
+            return;
+        };
+        animate(aDiv[n],{opacity:1},300)
+        n++;
+    },500)
+</script>
+</html>

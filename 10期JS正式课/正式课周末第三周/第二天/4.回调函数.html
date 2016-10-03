@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*
+    * 1.函数被调用的次数，取决于里面的条件
+    * 2.回调函数也可以传参
+    * 3.回调函数可以改变this指向；
+    * 4.回调函数是否有返回值,有多少返回值取决于回调函数被调用多少次；
+    *
+    * */
+    var obj={};
+    function  aa(n,m){
+        alert(this+(n+m))
+        return 123;
+    }
+    function fn(n){
+        /*if(typeof n ==='function'){
+            n();//n() 本质就是aa();
+        }*/
+        var ary=[];
+        for(var i=0; i<4; i++){
+            var val=n.call(obj,2,3); //n()代表aa()
+            ary.push(val);
+        }
+        return ary;
+    }
+    fn(aa)
+</script>
+</body>
+</html>

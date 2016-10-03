@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        div{
+            width: 200px;
+            height: 200px;
+            background: red;
+            position:absolute;
+            left:200px;
+            top:100px;
+
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+<script src="js/utils.js"></script>
+<script src="js/move.js"></script>
+<script>
+    var oDiv=document.getElementById('div1');
+    animate(oDiv,{left:1200,top:500},{
+        effect:['Elastic','easeInOut'],
+        callback:function(){
+            this.style.background='green';
+        }
+    })
+</script>
+</body>
+</html>

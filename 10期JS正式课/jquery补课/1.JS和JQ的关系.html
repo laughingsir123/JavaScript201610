@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        li{
+            height: 40px;
+        }
+        div{
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div id="div">珠峰培训</div>
+<ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+<script src="js/jquery-1.11.3.js"></script>
+<script>
+    //只要DOM加载完毕，就可以执行JS/JQ代码；
+    //window.onload:DOM,IMG,音频，视频...
+    var aLi=$('li');
+    var $div=$('#div');
+    for(var i=0; i<aLi.length; i++){
+        aLi[i].style.background='red'; //JQ转JS get(索引)
+    }
+    $div.click(function(){
+        //alert($(this).html()) //html()方法：当不传参数的时候，是获取
+        $(this).html('如果不懂的话，可以微信问我：18611959267')
+        //this->原生的this；
+        //this.style.background='green';
+        //$(this).css('background','green');
+        //this.css('background','green');//JQ和JS不能混淆
+    })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        div{
+            width: 200px;
+            height: 200px;
+            background: red;
+            margin:10px;
+            opacity: 0;
+            filter:alpha(opacity:0)
+        }
+    </style>
+</head>
+<body>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<script src="js/utils.js"></script>
+<script src="js/move.js"></script>
+<script>
+    var aDiv=document.getElementsByTagName('div');
+    var n=0;
+    clearInterval(timer);
+    var timer=setInterval(function(){
+        if(n>=aDiv.length){
+            clearInterval(timer);
+            return;
+        }
+        animate(aDiv[n],{
+            width:500,
+            opacity:1,
+        },{
+            effect:n
+        })
+        n++;
+    },600)
+</script>
+</body>
+</html>

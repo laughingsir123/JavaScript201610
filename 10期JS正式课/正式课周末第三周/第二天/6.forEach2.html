@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var ary=[12,32,34,25];
+    var obj={};
+    /*
+    1.回调函数被调用的次数取决于数组的长度
+    2.回调函数可以接收三个参数：数组的内容，索引，原始数组
+    3.回调函数的this指向可能会发生改变；取决于forEach的第二个参数
+    4.回调函数是否有返回值；--没有返回值
+
+     myForEach(callback,context); forEach没有返回值；
+    */
+    Array.prototype.myForEach=function(callback,context){
+        //this-》实例ary;
+        context=context||window;
+        //判断浏览器是否支持forEach
+        if('forEach' in Array.prototype){
+            this.forEach(callback,context);
+            return;//阻断程序执行；
+        }
+        //处理非标准浏览器
+        for(var i=0; i<this.length; i++){
+            callback.call(context,this[i],i,this);
+        }
+    };
+    ary.myForEach(function(item,index,input){
+        console.log(this)
+    },obj)
+</script>
+</body>
+</html>

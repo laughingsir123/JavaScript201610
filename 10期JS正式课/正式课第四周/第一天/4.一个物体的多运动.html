@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        div{
+            width: 200px;
+            height: 200px;
+            background: red;
+            position: absolute;
+            left:200px;/*target：1000*/
+            top:100px;/*target：500*/
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+<script src="utils.js"></script>
+<script>
+    var oDiv=document.getElementById('div1');
+    function  Linear(t,b,c,d){//linear公式：目的为了求出最新的位置
+        return b+c/d*t;
+    }
+    //为linear公式的参数做准备
+    var targetL=1000,targetT=500;
+    var beginL=200,beginT=100;
+    var changeL=targetL-beginL,changeT=targetT-beginT;
+    var duration=1000;
+    var time=0;
+    clearInterval(timer);
+    var timer=setInterval(function(){
+        time+=10;
+        //停止条件的判断
+        if(time>=duration){
+            utils.css(oDiv,{
+                left:targetL,
+                top:targetT
+            });
+            clearInterval(timer);
+            return;
+        }
+        //利用公式求出最新的位置，然后再设置最新的位置；
+        var curL=Linear(time,beginL,changeL,duration);
+        var curT=Linear(time,beginT,changeT,duration);
+        utils.css(oDiv,{
+            left:curL,
+            top:curT
+        })
+    },10)
+
+</script>
+</body>
+</html>

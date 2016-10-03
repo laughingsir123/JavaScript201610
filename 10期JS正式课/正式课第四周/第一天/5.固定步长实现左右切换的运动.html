@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        div{
+            width: 200px;
+            height: 200px;
+            background: red;
+            position: absolute;
+            left:500px;/*target：1000*/
+            top:100px;/*target：500*/
+        }
+        input{
+            width: 150px;
+            height:40px;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="向左走" id="btn1">
+<input type="button" value="向右走" id="btn2">
+<div id="div"></div>
+<script src="utils.js"></script>
+<script>
+    var oLeft=document.getElementById('btn1');
+    var oRight=document.getElementById('btn2');
+    var oDiv=document.getElementById('div');
+    /*var timer=null;*/
+    oRight.onclick=function(){
+        move(1200);
+    };
+    oLeft.onclick=function(){
+        move(0)
+    };
+    function  move(target){
+        _move();
+        function _move(){
+            clearTimeout(oDiv.timer);
+            var curLeft=utils.offset(oDiv).left;//现在的位置
+            if(curLeft<target){//比较现在的位置和目标值
+                if(curLeft+10>=target){
+                    utils.css(oDiv,'left',target);
+                    return;
+                }
+                curLeft+=10;
+                utils.css(oDiv,'left',curLeft);
+            }else{
+                if(curLeft-10<=target){
+                    utils.css(oDiv,'left',target);
+                    return;
+                }
+                curLeft-=10;
+                utils.css(oDiv,'left',curLeft);
+            }
+            oDiv.timer=setTimeout(_move,10);
+        }
+    }
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

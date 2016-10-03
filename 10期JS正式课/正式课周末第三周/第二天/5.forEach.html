@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var ary=[12,32,34,25];
+    var obj={};
+    //item:数组里面的内容 index：索引 input：原始数组
+    /*
+    * 1.回调函数被调用4次 -》取决于数组的长度；
+    * 2.回调函数被传了三个参数：item:数组里面的内容 index：索引 input：原始数组
+    * 3.回调函数可以被改变this指向；
+    * 4.回调函数没有返回值，forEach也没有返回值；
+    *forEach: 两个参数，第二个参数不写的话，默认是window；
+    * */
+    Array.prototype.myForEach=function(callback,context){
+        //this->实例ary;
+        context=context||window;
+        //浏览器支持的话，直接使用forEach
+        if('forEach' in Array.prototype){
+            this.forEach(callback,context);
+            return; //阻断程序执行的作用；
+        }
+        //浏览器不支持的兼容处理
+        for(var i=0; i<this.length; i++){
+            callback.call(context,this[i],i,this)
+        }
+
+    }
+    var res=ary.myForEach(function(item,index,input){
+        console.log(this==window)
+    },obj);
+    console.log(res)
+
+</script>
+</body>
+</html>

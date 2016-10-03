@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>瀑布流</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            list-style: none;
+        }
+        div{
+            width: 1600px;
+            margin:0 auto;
+        }
+        div ul{
+            float:left;
+            width:300px;
+            margin:0 10px;
+            /*height: 10px; //只是布局用的，千万不要用；
+            background:red;*/
+        }
+        div ul li{
+            font-size: 30px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">
+    <ul></ul>
+    <ul></ul>
+    <ul></ul>
+    <ul></ul>
+    <ul></ul>
+</div>
+<script src="utils.js"></script>
+<script>
+    var aUl=document.getElementsByTagName('ul'); //类数组
+    var n=0;
+    //1.需求：先创建一个li，高度随机，背景随机；
+    function createLi(){
+        var oLi=document.createElement('li');
+        oLi.style.height=utils.rnd(100,300)+'px';
+        oLi.style.background='rgb('+utils.rnd(0,255)+','+utils.rnd(0,255)+','+utils.rnd(0,255)+')';
+        return oLi;
+    }
+    //创建50个li，每创建一个li，都插入到最短的ul中；
+    li50();
+    function li50(){
+        for(var i=0; i<50; i++){
+            var oLi=createLi();
+            oLi.innerHTML=++n;
+            //1.aUl这个类数组 转 数组
+            var ary=utils.makeArray(aUl);
+            //2.数组排序
+            ary.sort(function(a,b){
+                return a.offsetHeight- b.offsetHeight;
+            });
+            //3.把li插入最短的ul中；
+            ary[0].appendChild(oLi);
+        }
+    }
+    window.onscroll=function(){
+        var scrollBottom=utils.win('scrollTop')+utils.win('clientHeight');
+        if(scrollBottom+500>=document.body.scrollHeight){
+            li50();
+        }
+    }
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+

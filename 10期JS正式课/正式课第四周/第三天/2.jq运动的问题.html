@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        div{
+            width: 200px;
+            margin:50px auto;
+        }
+        div input{
+            width: 100%;
+            height: 40px;
+        }
+        div p{
+            width: 100%;
+            height: 200px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <input type="button" value="点击">
+    <p></p>
+</div>
+<script src="js/jquery-1.11.3.js"></script>
+<script>
+    $('input').click(function(){
+       // $('p').slideToggle();
+        $('p').stop().fadeToggle();
+    })
+</script>
+</body>
+</html>

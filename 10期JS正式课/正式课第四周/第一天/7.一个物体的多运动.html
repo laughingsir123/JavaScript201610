@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        div{
+            width: 200px;
+            height: 200px;
+            background: red;
+            position: absolute;
+            left:200px;/*target：1000*/
+            top:100px;/*target：500*/
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+<script src="utils.js"></script>
+<script src="move3.js"></script>
+<script>
+    var oDiv=document.getElementById('div1');
+    animate(oDiv,{left:1200,top:500})
+    /*/!*
+    * t:time 走了多长时间
+    * b:begin 初始值
+    * c:target-begin 还要走多远
+    * d:duration 总时间
+    * *!/
+    function Linear(t,b,c,d){//linear:求出目前最新的位置
+        return b+c/d*t
+    }
+    //1.为linear这个公式的参数做准备
+    //目标值：target{left:1000,top:300}
+    var targetL=1000,targetT=500;
+    var beginL=200,beginT=100;//初始值；utils.css(oDiv,'left') utils.css(oDiv,'top')
+    var changeL=targetL-beginL,changeT=targetT-beginT;//{}
+    var duration=1000;
+    var time=null;
+    clearInterval(timer);
+    var timer=setInterval(function(){//累加时间，并且求出最新的位置
+        time+=10;
+        if(time>=duration){
+            utils.css(oDiv,{
+                left:targetL,
+                top:targetT
+            })
+            clearInterval(timer);
+            return;
+        }
+        //现在最新的位置
+        var curLeft=Linear(time,beginL,changeL,duration);
+        var curTop=Linear(time,beginT,changeT,duration);
+        utils.css(oDiv,{
+            left:curLeft,
+            top:curTop
+        })
+    },10)*/
+</script>
+</body>
+</html>

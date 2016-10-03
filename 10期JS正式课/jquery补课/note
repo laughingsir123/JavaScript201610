@@ -1,0 +1,4 @@
+1.JQ和JS之间的相互转换
+    JQ转JS $().get(索引)  $()[索引]
+    JS转JQ $(JS元素)    this-》$(this);
+    

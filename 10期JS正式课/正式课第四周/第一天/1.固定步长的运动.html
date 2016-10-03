@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #div{
+            width: 200px;
+            height: 200px;
+            background: red;
+            position: absolute;
+            left:0;
+            top:30px;
+        }
+        #target{
+            width: 1px;
+            height:300px;
+            background: #000;
+            position: absolute;
+            left:950px;
+        }
+    </style>
+</head>
+<body>
+<div id="div"></div>
+<div id="target"></div>
+<script src="utils.js"></script>
+<script>
+    var oDiv=document.getElementById('div');
+    /*
+    * 1.设定固定的step和target目标值
+    * 2.开启定时器，每次在最新的位置上，加上step；再重新赋值最新的位置；
+    * 3.停止条件：当最新位置>=目标值；
+    * */
+    var step=27;
+    var target=950;
+    clearInterval(timer);
+    var timer=setInterval(function(){
+        var curLeft=utils.offset(oDiv).left;
+        if(curLeft+step>=target){//边界值判断：走到最后的时候，预估如果再走一步，就会超过目标值，那我们就直接等于目标值；
+            utils.css(oDiv,'left',target);
+            clearInterval(timer);
+            return;
+        }
+        curLeft+=step;
+        utils.css(oDiv,'left',curLeft);
+    },10)
+</script>
+</body>
+</html>

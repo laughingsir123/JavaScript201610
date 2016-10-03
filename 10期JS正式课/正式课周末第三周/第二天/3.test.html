@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="div">
+    <div class="box0">0</div>
+    <div class="box">1</div>
+    <div class="box2">2</div>
+    <p></p>
+    <p></p>
+    <span></span>
+    <span>span</span>
+</div>
+<script src="utils.js"></script>
+<script>
+    var oDiv=document.getElementById('div');
+    var aDiv=utils.getChildren(oDiv,'div');
+    alert('previousElementSibling' in oDiv)
+    //console.log(utils.next(aDiv[1]))
+    //console.log(utils.prevAll(aDiv[2]))
+    //console.log(utils.index(aDiv[1]))
+    //console.log(utils.lastChild(oDiv))
+    //console.log(aDiv)
+    /*utils.setCss(oDiv,'width',300);
+    utils.setCss(oDiv,'height',100);
+    utils.setCss(oDiv,'background','red');
+    utils.setCss(oDiv,'opacity',0.3);
+    utils.setCss(oDiv,'float','right');*/
+    /*utils.setGroupCss(oDiv,{
+        width:300,
+        height:100,
+        background:'green',
+        opacity:0.3,
+        float:'right'
+    })*/
+</script>
+</body>
+</html>

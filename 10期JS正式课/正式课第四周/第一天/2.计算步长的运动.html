@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #div{
+            width: 200px;
+            height: 200px;
+            background: red;
+            position: absolute;
+            left:0;
+            top:30px;
+        }
+        #target{
+            width: 1px;
+            height:300px;
+            background: #000;
+            position: absolute;
+            left:950px;
+        }
+    </style>
+</head>
+<body>
+<div id="div"></div>
+<div id="target"></div>
+<script src="utils.js"></script>
+<script>
+    var oDiv=document.getElementById('div');
+    var target=950;
+    var duration=1000;
+    var interval=10;
+    var step=target/duration*interval; //步长是匀速运动
+    clearInterval(timer);
+    var timer=setInterval(function(){
+        var curLeft=utils.offset(oDiv).left;
+        if(curLeft+step>=target){
+            utils.css(oDiv,{left:target});
+            clearInterval(timer);
+            return;
+        }
+        curLeft+=step;
+        //utils.css(oDiv,'left',curLeft)
+        utils.css(oDiv,{left:curLeft})
+    },interval)
+</script>
+</body>
+</html>

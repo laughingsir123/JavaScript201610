@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html,body{
+            height: 100%;
+        }
+        #div1{
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">
+    <div class="       box1    box2      box3     box4      ">div1111111</div>
+    <div class="box1 box2 box3">div2</div>
+    <div class="box1 box2">div3</div>
+    <div class="box1">div4</div>
+    <p class="box1 box2 box3 box4">p1</p>
+    <p class="box1 box2 box3">p2</p>
+</div>
+<script src="utils.js"></script>
+<script>
+    var oDiv=document.getElementById('div1');
+    var aDiv=oDiv.getElementsByTagName('div');
+    var aList=utils.getByClass('    box1      box2      box3     box4       ',oDiv);
+    for(var i=0; i<aList.length; i++){
+        aList[i].style.height='50px';
+        aList[i].style.background='red';
+    }
+    //utils.removeClass(aDiv[0],'box2')
+    //utils.addClass(aDiv[2],'box2 box5 box6');
+    //console.log(aDiv[0])
+    /*utils.setCss(aDiv[0],'background','blue')
+    utils.setCss(aDiv[0],'height','100%')
+    utils.setCss(aDiv[0],'float','left');
+    alert(aDiv[0].currentStyle.styleFloat)*/
+   utils.css(aDiv[0],'height','100%')
+    /*
+    * getElementsByClassName//在IE6-8下不支持
+    * 统一的按照'getComputedStyle' in window
+    *   标准浏览器下-getElementsByClassName
+    *   IE6-8下-自己处理兼容；
+             * 1.字符串转数组：['box1','box2','box3','box4];
+             * 2.分别校验oDiv这个容器下，所有的元素的className,看其是否包含数组中的每一项，如果都包含，那么这个元素就是我们要找的，把他放入数组
+             * 3.返回数组
+    * */
+    function  getByClass(strClass,curEle){
+        curEle=curEle||document;
+        //标准浏览器下-getElementsByClassName
+        if('getComputedStyle' in window){
+            return Array.prototype.slice.call(curEle.getElementsByClassName(strClass));
+        }
+        //处理IE6-8的兼容问题：
+        //1.字符串转数组:先去除首尾空格，再按照空格切分成数组
+        var aryClass=strClass.replace(/(^ +)|( +$)/g,'').split(/\s+/g);
+        //2.拿到当前容器下所有的子元素
+        var nodeList=curEle.getElementsByTagName('*'); //通配符*代表所有
+        var ary=[];
+        //3.逐个校验每个元素的className是否包含数组中的每一项；
+        for(var i=0; i<nodeList.length; i++){
+            var curNode=nodeList[i];
+            var bOk=true; //假设该元素的class中包含数组中的每一项
+            for(var j=0; j<aryClass.length; j++){
+                var reg=new RegExp('\\b'+aryClass[j]+'\\b');
+                //如果有一项不合格，boK=false；立即跳出循环
+                if(!reg.test(curNode.className)){
+                    bOk=false;
+                    break;
+                }
+            }
+            if(bOk){
+                ary.push(curNode);
+            }
+        }
+        return ary;
+    }
+</script>
+</body>
+</html>

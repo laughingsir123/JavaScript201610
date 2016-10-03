@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        li{
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+<script src="js/jquery-1.11.3.js"></script>
+<script>
+    var aLi=$('li');//$().xxx(); 实例.方法名();   $.xxx() 类.方法名();
+    var ary=[12,34,54,28];
+    var obj={name:'zhufeng',age:9}
+   /* aLi.each(function(index,item){
+        //item:原生；
+        /!*item.style.background='red';*!/
+        $(item).html('珠峰培训')
+
+    })*/
+    $.each(obj,function(){ //原生的数组，JQ元素，对象
+        console.log(arguments)
+    });
+    /*ary.each(function(){
+        console.log(arguments)
+    })*/
+</script>
+</body>
+</html>
