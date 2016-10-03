@@ -18,7 +18,7 @@
     不受内容溢出的影响--不能代表内容的高度
 3）scroll系列：
     scrollHeight:
-        内容溢出时：约定于 上padding+内容的高度
+        内容溢出时：约等于 上padding+内容的高度
         内容没溢出：跟clientHeight的值一样的；
     为何约等于：
         1）在内容溢出的情况下，不同浏览器拿到的offsetHeight不同
