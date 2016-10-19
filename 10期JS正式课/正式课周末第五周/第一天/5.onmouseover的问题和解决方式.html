@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+        }
+        #div{
+            width: 500px;
+            height: 500px;
+            margin:10px auto;
+            background: red;
+            position: relative;
+        }
+        #mark{
+            position: absolute;
+            width: 100px;
+            height:100px;
+            background: green;
+            left:0;
+            top:0;
+        }
+    </style>
+</head>
+<body>
+<div id="div">
+</div>
+<script>
+    var oDiv=document.getElementById('div');
+    var oMark=null;
+    oDiv.onmouseenter=function(e){
+        oMark=document.createElement('div');
+        oMark.id='mark';
+        this.appendChild(oMark);
+    };
+    oDiv.onmousemove=function(e){
+        e=e||window.event;
+        oMark.style.left= e.clientX-this.offsetLeft+'px';
+        oMark.style.top= e.clientY-this.offsetTop+'px';
+    };
+    oDiv.onmouseleave=function(e){
+        this.removeChild(oMark);
+        console.log('ok')
+    };
+    //思路1：关联元素：除了红色div进行创建和删除之外，其他元素都不做这些操作；
+    /*oDiv.onmouseover=function(e){
+        e=e||window.event;
+        var oTo= e.fromElement|| e.relatedTarget;//关联元素
+        if(this.contains(oTo)) return;
+        oMark=document.createElement('div');
+        oMark.id='mark';
+        this.appendChild(oMark);
+    };
+    oDiv.onmousemove=function(e){
+        e=e||window.event;
+        oMark.style.left= e.clientX-this.offsetLeft+'px';
+        oMark.style.top= e.clientY-this.offsetTop+'px';
+    };
+    oDiv.onmouseout=function(e){
+        e=e||window.event;
+        var oTo= e.toElement|| e.relatedTarget;//关联元素
+        if(this.contains(oTo)) return;
+        this.removeChild(oMark);
+        console.log('ok')
+    };*/
+    /*
+    * 1.鼠标移入红色，创建绿色div；
+    * 2.鼠标在红色中移动，绿色div跟着鼠标一起走
+    * 3.鼠标移出红色，绿色div消失；
+    * */
+    /*oDiv.onmouseover=function(){
+        oMark=document.createElement('div');
+        oMark.id='mark';
+        this.appendChild(oMark);
+        //当鼠标移入mark的时候，触发了mark的onmouseover事件，会冒泡的oDiv.onmouseover上，然后开始创建mark;
+        oMark.onmouseover=function(e){
+            e=e||window.event;
+            e.stopPropagation? e.stopPropagation(): e.cancelBubble=true;
+        }
+    };
+    oDiv.onmousemove=function(e){
+        e=e||window.event;
+        oMark.style.left= e.clientX-this.offsetLeft+'px';
+        oMark.style.top= e.clientY-this.offsetTop+'px';
+    };
+    //当鼠标移出mark的时候，触发mark的onmouseout事件，冒泡到oDiv.onmouseout事件；
+    oDiv.onmouseout=function(){
+        this.removeChild(oMark);
+        oMark.onmouseout=function(e){
+            e=e||window.event;
+            e.stopPropagation? e.stopPropagation(): e.cancelBubble=true;
+        };
+        console.log('ok')
+    }*/
+</script>
+</body>
+</html>

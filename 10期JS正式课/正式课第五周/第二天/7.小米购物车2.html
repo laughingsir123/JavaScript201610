@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html,body{
+            height: 100%;
+        }
+        *{
+            margin:0;
+            padding:0;
+        }
+        #div{
+            width: 200px;
+            height: 50px;
+            background: #333;
+            margin:50px auto;
+            position: relative;
+        }
+        #mark{
+            width: 500px;
+            height: 200px;
+            background: lightblue;
+            position: absolute;
+            top:50px;
+            display: none
+        }
+    </style>
+</head>
+<body>
+<div id="div">
+    <div id="mark" ></div>
+</div>
+<script>
+    var oDiv=document.getElementById('div');
+    var oMark=document.getElementById('mark');
+    /*
+    * 1.点击div，显示mark，再点击div，隐藏mark；
+    * 2.点击页面任何部分，都能隐藏mark，但是，点击mark，不能隐藏mark；
+    * */
+    document.body.onclick=function(e){
+        e=e||window.event;
+        if(e.target.id=='div'){
+            //(oMark.style.display)--这是行间样式，而我们设置的是非行间，所以行间获取不到；行间获取的是空；
+            if(oMark.style.display=='block'){
+                oMark.style.display='none';
+            }else{
+                oMark.style.display='block';
+            }
+            return;
+        }
+        //思路1：点击除了mark意外的事件源，都隐藏mark；
+        /*if(e.target.id !=='mark'){
+            oMark.style.display='none';
+        }*/
+        //思路2：阻止mark点击事件的冒泡；mark点击事件被触发--父级div和body点击事件就被触发
+        /*oMark.onclick=function(e){//阻止冒泡
+            e=e||window.event;
+            e.stopPropagation? e.stopPropagation(): e.cancelBubble=true;
+            return;
+        };
+        oMark.style.display='none';*/
+    }
+</script>
+</body>
+</html>

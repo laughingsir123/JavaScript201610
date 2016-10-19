@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body,html{
+            width:100%;
+            height:100%;
+        }
+        *{
+            margin:0;
+            padding:0;
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        img{
+            display: block;
+            width:540px;
+            height: 258px;
+            margin: 10px auto;
+        }
+        div{
+            width: 690px;
+            margin:10px auto;
+            position: relative;
+        }
+        div input{
+            width: 518px;
+            height:36px;
+            line-height: 36px;
+            padding:10px;
+            float: left;
+            border:1px solid #3385ff;
+            outline: none;
+            font-size: 30px;
+        }
+        div span{
+            float: left;
+            width: 150px;
+            height: 58px;
+            line-height: 58px;
+            background: #3385ff;
+            text-align: center;
+            color: #fff;
+        }
+        div ul{
+            width: 688px;
+            position: absolute;
+            left:0;
+            top:57px;
+            box-shadow: 0 0 4px #333;
+            display: none;
+        }
+        div ul li{
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+        }
+        div ul li a{
+            width: 100%;
+            height: 100%;
+            display: block;
+            padding-left:10px;
+            color: #333;
+            font-size: 30px;
+        }
+        div ul li a:hover{
+            background: #e1e1e1;
+        }
+    </style>
+</head>
+<body>
+<img src="img/bd_logo1.png" alt="">
+<div>
+    <input type="text" id="txt"><span id="btn">百度一下</span>
+    <ul>
+        <li><a href="javascript:;">珠峰培训-页面培训</a></li>
+        <li><a href="javascript:;">珠峰培训-JavaScript</a></li>
+        <li><a href="javascript:;">珠峰培训-node</a></li>
+        <li><a href="javascript:;">珠峰培训-随便打打</a></li>
+        <li><a href="javascript:;">珠峰培训-啊啊啊啊啊啊</a></li>
+    </ul>
+</div>
+<script>
+    /*什么时候显示和隐藏，估计会有哪些步骤
+    *1.聚焦的时候，有内容ul显示，反之，ul隐藏
+    *2.编辑内容的时候，ul显示，如果内容为空，ul隐藏；
+    *3.当点击a链接的时候，1）内容框为a链接的内容 2）ul隐藏 3）开始搜索内容
+    *4.点击页面其他任何地方的时候，ul隐藏；
+    *5.按键盘上下键的时候，列表的背景会跟着切换，搜索框的内容跟着改变，
+    *6.按下enter键的时候，内容框的内容为按下的内容，同时开始搜索，ul隐藏
+    *7.点击搜索按钮的时候，也开始搜索；
+    * */
+    var oTxt=document.getElementById('txt');
+    var oBtn=document.getElementById('btn');
+    var oUl=document.getElementsByTagName('ul')[0];
+    var aA=oUl.getElementsByTagName('a');
+    var oldValue=null;
+    var n=-1;
+    //1.聚焦的时候，有内容ul显示，反之，ul隐藏
+    //2.编辑内容的时候，ul显示，如果内容为空，ul隐藏；
+    oTxt.onkeyup=oTxt.onfocus=function(){
+        if(oTxt.value){
+            oUl.style.display='block';
+        }else{
+            oUl.style.display='none';
+        }
+    };
+    document.body.onclick=function(e){
+        e=e||window.event;
+        if(e.target.tagName.toLowerCase()=='a'){
+            oTxt.value= e.target.innerHTML;//内容为链接的内容
+            search();
+        }
+        if(e.target.id=='btn'){
+            search();
+        }
+        if(e.target.id !=='txt'){
+            oUl.style.display='none';
+        }
+    };
+    oTxt.onkeydown=function(e){
+        e=e||window.event;
+        //e.keyCode: up:38 down:40;
+        if(e.keyCode==40){//down
+            n++;//把n作为索引，决定让第几个a有背景
+            if(n>=aA.length){//n的边界显示
+                n=-1;
+            }
+            show();
+        }else if(e.keyCode==38){//up
+            n--;
+            if(n<=-2){
+                n=aA.length-1;
+            }
+            show();
+        }
+        if(e.keyCode==13){
+            oTxt.value=aA[n].innerHTML;
+            search();
+        }
+    };
+    function show(){
+        if(!oldValue){//oldValue只能存一次，用的取反的思想
+            oldValue=oTxt.value;
+        }
+        for(var i=0; i<aA.length; i++){//让所有的列表都变灭，让当前这个列表变亮
+            aA[i].style.background=null;
+        }
+        if(n==-1){
+            oTxt.value=oldValue;
+        }else{
+            aA[n].style.background='#e1e1e1';
+            oTxt.value=aA[n].innerHTML;
+        }
+    }
+    function search(){
+        window.open('https://www.baidu.com/s?wd='+oTxt.value,'_blank');
+        oUl.style.display='none';
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding:0;
+        }
+        #div{
+            width: 500px;
+            height: 500px;
+            background: red;
+            margin:50px auto;
+            position: relative;
+        }
+        #mark{
+            width: 100px;
+            height: 100px;
+            background: green;
+            position: absolute;
+            left:0;
+            top:0;
+        }
+    </style>
+</head>
+<body>
+<div id="div"></div>
+<script>
+    /*
+    * 1.移入的时候，创建一个绿色的div;--onmouseover
+    * 2.鼠标在红块中移动的时候，绿色的div跟着鼠标走；--onmousemove
+    * 3.当鼠标移出红块的时候，绿色的div消失；--onmouseout;
+    * */
+    var oDiv=document.getElementById('div');
+    var oMark=null;
+    //如果移到mark上，就会触发mark的onmouseover事件，也会oDiv.onmouseover事件，然后就会创建mark;
+    /*oDiv.onmouseover=function(e){
+        oMark=document.createElement('div');
+        oMark.id='mark';
+        this.appendChild(oMark);
+        oMark.onmouseover=function(e){
+            e=e||window.event;
+            e.stopPropagation? e.stopPropagation(): e.cancelBubble=true;
+        }
+
+    };
+    oDiv.onmousemove=function(e){
+        e=e|| window.event;
+        oMark.style.left= e.clientX-oDiv.offsetLeft+'px';
+        oMark.style.top= e.clientY-oDiv.offsetTop+'px';
+    };
+    //当鼠标移出mark的时候
+    // 1)会触发mark的onmouseout事件，他会冒泡冒到oDiv的onmouseout事件，就会执行oDiv.removeChild(oMark);
+    //2)触发oDiv的onmouseover事件，就会创建mark;
+    oDiv.onmouseout=function(){
+        oDiv.removeChild(oMark);
+        oMark.onmouseout=function(e){
+            e=e||window.event;
+            e.stopPropagation? e.stopPropagation(): e.cancelBubble=true;
+        }
+    }*/
+    //解决方法1：用关联元素；
+    /*oDiv.onmouseover=function(e){
+        e=e||window.event;
+        //移入用：fromElement;
+        var oTo= e.fromElement||e.relatedTarget;//关联元素
+        if(oDiv.contains(oTo)) return;//如果遇到关联元素，后面操作都不执行了
+        oMark=document.createElement('div');
+        oMark.id='mark';
+        this.appendChild(oMark);
+    };
+    oDiv.onmousemove=function(e){
+        e=e||window.event;
+        oMark.style.left= e.clientX-this.offsetLeft+'px';
+        oMark.style.top= e.clientY-this.offsetTop+'px';
+    };
+    oDiv.onmouseout=function(e){
+        e=e||window.event;
+        //移出用：toElement;
+        var oTo= e.toElement|| e.relatedTarget;
+        if(oDiv.contains(oTo)) return;
+        this.removeChild(oMark);
+    };*/
+    oDiv.onmouseenter=function(e){
+        oMark=document.createElement('div');
+        oMark.id='mark';
+        this.appendChild(oMark);
+    };
+    oDiv.onmousemove=function(e){
+        e=e||window.event;
+        oMark.style.left= e.clientX-this.offsetLeft+'px';
+        oMark.style.top= e.clientY-this.offsetTop+'px';
+    };
+    oDiv.onmouseleave=function(e){
+        this.removeChild(oMark);
+    };
+
+
+</script>
+</body>
+</html>

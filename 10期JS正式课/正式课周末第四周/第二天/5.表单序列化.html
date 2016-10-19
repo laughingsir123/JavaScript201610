@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="">
+    <input type="text" name="context">
+    <p><input type="radio" name="sex" value="gril">女</p>
+    <p><input type="radio" name="sex" value="boy">男</p>
+    <input type="checkbox" name="school" value="abc">
+    <input type="checkbox" name="school" value="ddd">
+    <input type="button" value="按钮">
+</form>
+<script src="js/jquery-1.11.3.js"></script>
+<script>
+    $(':button').click(function(){
+        /*//?context=12233334&sex=gril&school=abc&school=ddd
+        console.log($('form').serialize());//在表单中把前端要给后台传的数据，以键值对的形式拼接到地址的后面； www.baidu.com?context=12233334&sex=gril&school=abc&school=ddd
+        //console.log($('form').serializeArray());*/
+        $.ajax({//通过ajax来请求数据的；
+            url:'zhufeng.txt',//请求地址
+            type:'get',//请求方式
+            data:$('form').serialize(),//前端给后台要传的数据
+            dataType:'json',//返回的数据类型
+            cache:false,//是否缓存
+            success:function(val){//后台返回给前端的数据
+                console.log(val) //1234455566666666
+            }
+        })
+    })
+</script>
+</body>
+</html>

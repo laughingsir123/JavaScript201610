@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html,body{
+            width:100%;
+            height: 100%;
+        }
+        *{
+            margin:0;
+            padding:0;
+        }
+        div{
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+        input{
+            width: 300px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body style="height: 2000px">
+<div id="div"></div>
+<input type="text" id="txt">
+<script>
+    var oDiv=document.getElementById('div');
+    var oTxt=document.getElementById('txt');
+    oTxt.onkeydown=function(e){
+        e=e||window.event;
+        //(e.keyCode<48|| e.keyCode>57) 非数字
+        if((e.keyCode<48|| e.keyCode>57) && e.keyCode!=8){
+            e.preventDefault? e.preventDefault(): e.returnValue=false;
+        }
+        //e.preventDefault();//只兼容标准浏览器；
+        //alert(e.keyCode) //键码--兼容
+    };
+    /*document.body.oncontextmenu=function(e){
+        e=e||window.event;
+        //e.returnValue=false;//兼容IE和谷歌，但不兼容firefox
+        e.preventDefault? e.preventDefault(): e.returnValue=false;
+        alert(1)
+    }*/
+
+    /*oDiv.onclick=function(e){
+        e=e||window.event;//事件对象的兼容处理
+        console.log(e)
+        //console.log(e.type)//当前在元素身上发生的“行为”；--兼容的
+        //e.clientX/e.clientY:当前鼠标落脚点距离“可视区”左上角的坐标位置；--兼容的
+    }*/
+    /*document.body.onclick=function(e){
+        e=e||window.event;
+        console.log(e.clientX, e.clientY)
+        e.pageY=(document.documentElement.scrollTop||document.body.scrollTop)+ e.clientY;
+        e.pageX=(document.documentElement.scrollLeft||document.body.scrollLeft)+ e.clientX;
+        console.log(e.pageX, e.pageY)//当前鼠标落脚点距离第一屏左上角的坐标位置；
+    }*/
+
+</script>
+</body>
+</html>

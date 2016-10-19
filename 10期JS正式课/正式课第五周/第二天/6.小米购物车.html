@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #div{
+            width: 200px;
+            height: 50px;
+            background: #333;
+            margin:50px auto;
+            position: relative;
+        }
+        #mark{
+            width: 500px;
+            height: 200px;
+            background: lightblue;
+            position: absolute;
+            top:50px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="div">
+    <div id="mark"></div>
+</div>
+<script>
+    var oDiv=document.getElementById('div');
+    var oMark=document.getElementById('mark');
+    /*oDiv.onmouseover=function(e){
+        e=e||window.event;
+        var oTo= e.fromElement|| e.relatedTarget;
+        if(this.contains(oTo)) return;
+        oMark.style.display='block';
+        console.log('ok')
+    };
+    oDiv.onmouseout=function(e){
+        e=e||window.event;
+        var oTo= e.toElement|| e.relatedTarget;
+        if(this.contains(oTo)) return;
+        oMark.style.display='none';
+    };*/
+    oDiv.onmouseenter=function(e){
+        oMark.style.display='block';
+        console.log('ok')
+    };
+    oDiv.onmouseleave=function(e){
+        oMark.style.display='none';
+    };
+</script>
+</body>
+</html>

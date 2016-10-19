@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html,body{
+            height: 100%;
+        }
+        #div{
+            width: 200px;
+            height: 50px;
+            background: grey;
+            margin:50px auto;
+            position: relative;
+        }
+        #mark{
+            width: 500px;
+            height: 400px;
+            background: lightblue;
+            position: absolute;
+            top:50px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="div">
+    <div id="mark"></div>
+</div>
+<script>
+    var oDiv=document.getElementById('div');
+    var oMark=document.getElementById('mark');
+    /*要求：用事件委托来实现；
+    * 1.点击div，mark显示，再点击div，mark隐藏；
+    * 2.点击页面任何地方，mark都隐藏，但是，点击mark，mark不隐藏；
+    * */
+    //所有的一切，都用事件委托来实现，然后根据事件源做不同的区分；
+    //把所有的点击行为，都委托给body
+    document.body.onclick=function(e){
+        e=e||window.event;
+        var target= e.target|| e.srcElement;//事件源
+        if(target.id=='div'){
+            console.log(oMark.style.display)//获取的是行间样式，行间样式拿到的是空，因为我们把样式设置在了非行间样式；
+            if(oMark.style.display==='block'){
+                oMark.style.display='none';
+            }else{
+                oMark.style.display='block';
+            }
+        }
+        if(target.id !== 'mark' && target.id !== 'div'){
+            oMark.style.display='none';
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

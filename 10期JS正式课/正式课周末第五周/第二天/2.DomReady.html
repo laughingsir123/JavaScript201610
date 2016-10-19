@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/jquery-1.11.3.js"></script>
+    <script>
+        //window.onload是把页面所有的东西（DOM，音频，视频，图片，。。。。）都加载完成，才执行JS代码；
+        window.onload=function(){
+            alert('我是JS')
+        };
+        domReady(function(){
+            alert('我是JQ')
+        });
+        function domReady(fn){
+            if(document.addEventListener){//标准浏览器
+                document.addEventListener('DOMContentLoaded',fn,false);
+            }else{
+                /*document.readyState：
+                * 0-UNINITIALIZED：XML 对象被产生，但没有任何文件被加载。
+                 1-LOADING：加载程序进行中，但文件尚未开始解析。
+                 2-LOADED：部分的文件已经加载且进行解析，但对象模型尚未生效。
+                 3-INTERACTIVE：仅对已加载的部分文件有效，在此情况下，对象模型是有效但只读的。
+                 4-COMPLETED：文件已完全加载，代表加载成功。
+                 */
+                //onreadystatechange:当页面状态发生改变的时候，通过doucment.readyState来监听页面变化的状态；
+                document.onreadystatechange=function(){
+                    //文件已完全加载，代表加载成功。
+                    if(document.readyState=='complete'){
+                        fn();
+                    }
+                }
+            }
+        }
+        /*//$(document).ready:只把页面的DOM结构加载进来后，就开始执行JS代码；
+        $(document).ready(function(){
+            alert('我是JQ')
+        })*/
+        /*document.addEventListener('DOMContentLoaded',function(){
+            alert('我是JQ')
+        },false)*/
+    </script>
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html,body{
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<script>
+    /*
+    * 1.功能：改变this指向，给函数传参，返回值：已经改好this指向，并且传好参数的函数定义阶段；
+    * 2.bind不兼容  事件对象不兼容；
+    * 3.封装：
+    *   1）bind应该封装在Function.prototype上-》this是实例fn
+    *   2)bind参数有2类：1.确定：改变this指向 2.不确定的：实例fn的参数
+    *   3）当浏览器支持bind的时候，直接使用系统提供的bind方法，不支持，我们才自己处理兼容  return this.bind()
+    *   4）bind有返回值：已经改好this指向，并且传好参数的函数定义阶段；还要考虑事件对象的兼容性；
+    * */
+    Function.prototype.myBind=function(context){//context:改变this指向
+        var outArg=Array.prototype.slice.call(arguments,1);
+        var _this=this;
+        if('bind' in Function.prototype){//标准浏览器支持bind
+            //要给bind这个方法传的参数：1）改变this指向 2）outArg数组中的每一项
+            //bind中的this，是实例；一定要保证this指向的正确
+            return this.bind.apply(this,[context].concat(outArg))
+        }
+        //对IE浏览器的兼容处理；
+        return function (){
+            var innerArg=Array.prototype.slice.call(arguments);
+            innerArg.length==0?innerArg[innerArg.length]=window.event:null;
+            _this.apply(context,outArg.concat(innerArg))
+        }
+
+    };
+    var obj={};
+    function  fn(n,m){
+       // console.log(this,n+m)//object 5
+        //console.log(arguments)//2,3,mouseEvent
+        console.log(this==obj)
+    }
+    document.body.onclick=fn.myBind(obj,2,3);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        div{
+            padding:200px;
+            color: white;
+            font-size: 40px;
+        }
+        #div1{
+            background: #000;
+        }
+        #div2{
+            background: #f00;
+        }
+        #div3{
+            background: green;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">div1
+    <div id="div2">div2
+        <div id="div3">div3</div>
+    </div>
+</div>
+<script>
+    var oDiv1=document.getElementById('div1');
+    var oDiv2=document.getElementById('div2');
+    var oDiv3=document.getElementById('div3');
+   /* oDiv1.onclick=function(){
+        alert('div1');
+    };
+    oDiv2.onclick=function(){
+        alert('div2');
+    };*/
+    /*oDiv3.onclick=function(){
+        alert('div3');
+    };*/
+    oDiv1.addEventListener('click',function(){
+        alert('div1');
+    },false);
+    oDiv2.addEventListener('click',function(){
+        alert('div2');
+    },false);
+    oDiv3.addEventListener('click',function(e){
+        e=e||window.event;
+        e.stopPropagation? e.stopPropagation(): e.cancelBubble=true;
+        alert('div3');
+    },false);//useCapture：是否捕获； 说明这个行为目前发生在冒泡阶段
+</script>
+</body>
+</html>

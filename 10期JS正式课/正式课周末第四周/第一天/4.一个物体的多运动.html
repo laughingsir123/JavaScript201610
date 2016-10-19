@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            position: absolute;
+            left:200px;
+            top:100px;
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+        #target{
+            width: 1px;
+            height: 300px;
+            position: absolute;
+            left:1000px;
+            top:0;
+            background: #000;
+        }
+    </style>
+</head>
+<body>
+<div id="div"></div>
+<script src="js/utils.js"></script>
+<script src="js/move3.js"></script>
+<script>
+    /*//t:time走了多久  b:begin起始位置  c:change还要走的距离 d：duration走的总时间
+    function Linear(t,b,c,d){
+        return b+c/d*t;
+    }
+    var oDiv=document.getElementById('div');
+    //思路分析：targetL,targetT; beginL,beginT; changeL,changeT; duration; time;
+    var targetL=1200,targetT=500;//{left:xxx,top:xxx}
+    var beginL=oDiv.offsetLeft,beginT=oDiv.offsetTop;
+    var changeL=targetL-beginL,changeT=targetT-beginT;
+    var duration=1000;
+    var time=null;
+    //累加时间，根据公式求出最新的位置，并且，设置最新的位置；  停止条件的判断--时间
+    clearInterval(timer);
+    var timer=setInterval(function(){
+        if(time>=duration){
+            utils.css(oDiv,{
+                left:targetL,
+                top:targetT,
+            });
+            clearInterval(timer);
+            return;
+        }
+        time+=10;
+        var curL=Linear(time,beginL,changeL,duration);
+        var curT=Linear(time,beginT,changeT,duration);
+        utils.css(oDiv,{
+            left:curL,
+            top:curT
+        })
+    },10)
+*/
+    //使用运动库
+    var oDiv=document.getElementById('div');
+    animate(oDiv,{
+        left:1400,
+        top:600
+    },{
+        duration:500,
+        callback:function(){
+            this.style.background='blue';
+        },
+        effect:['Bounce','easeInOut']
+    })
+    /*animate(oDiv,{
+        left:1200,
+        top:500,
+    },{
+        effect:['Bounce','easeOut'],
+        callback:function(){
+            this.style.background='green';
+        }
+    })*/
+
+</script>
+</body>
+</html>

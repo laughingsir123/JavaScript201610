@@ -1,0 +1,77 @@
+1.左右切换/渐隐渐现轮播图-构造函数  ---用原生写+自己写运动库
+2.渐隐渐现/左右切换轮播图jQuery+构造函数
+3.表格排序
+4.myForEach封装+map封装
+5.求平均值
+6.判断是否为共有方法的封装
+7.给数组添加去重的公有方法；及 数组去重的公有方法有几种，都写出来；
+8.Object.create()封装
+9.面向对象中的继承方法，你熟悉几种？面向对象的涉及模式，你熟悉几种，简单罗列；
+10.冒泡排序，快排，插排
+11.隔行换色99乘法表
+12.获取四个不重复的随机验证码
+13.任意数求和--arguments
+14.倒计时；
+15.跑马灯；
+16.延迟加载的瀑布流+toTop回到顶部:瀑布流+延迟加载+回到顶部
+17.封装出现次数最多的单词及出现次数-正则
+18.封装日期格式化-正则
+19.封装获取链接参数的键值对-正则；
+20.jQuery插件的扩充-扩充渐隐渐现轮播图；$.extend-类扩充 $.fn.extend:原型-实例用
+21.用setTimeout实现点击左右按钮，div进行左右运动；--涉及：固定步长的运动，定时器的优化，递归思想；
+22.DOM库中的getChildren;包括过滤子元素的功能
+23.DOM库中，getByClass, hasClass,addClass,removeClass
+24.DOM库中，getCss,setCss,setGroupCss,css;
+所有的UI效果：JS+构造函数封装；
+提高工作能力：jQuery+构造函数封装；
+。。。。。。。。。。。。。。。。。。。。。。。。。。。。。
+*JS中重要的几块内容：
+1）DOM库 2）运动-defaultOpt 3)事件  4）移动端 5）交互-周啸天+张亚涛 ajax+jsonp;
+node：姜文+张仁阳；
+等姜文讲完后    2-3天休息：面试（白天面试+查缺补漏）很辛苦；--一定要熬过去；
+......................................................
+1.事件：
+鼠标事件：
+    onmouseover onmouseout onclick ondbclick onmousewheel
+表单事件：
+    onfocus(聚焦)  onblur（失去焦点）
+键盘事件：
+    onkeydown onkeyup onkeypress
+系统事件：
+    onload onscroll onresize..
+2.事件对象的兼容处理：
+e=e||window.event;
+3.e：事件对象的详细信息
+    1.e.clientX、e.clientY:当前点击位置距离可视区左上角的坐标位置；--兼容
+    2.e.pageX,e.pageY:当前鼠标落脚点距离第一屏左上角的坐标位置；--不兼容；
+        e.pageY= (document.documentElement.scrollTop||document.body.scrollTop)+e.clientY;
+        e.pageX=(document.documentElement.scrollLeft||document.body.scrollLeft)+ e.clientX;
+    3.e.type:当前的行为类型；
+    4.e.target=e.target||e.srcElement:事件源兼容处理；
+    5.事件流：
+    1)事件流三阶段：捕获阶段   目标阶段（e.target）  冒泡阶段
+    2)事件流两阶段：捕获阶段 和 冒泡阶段
+        冒泡阶段：当子元素身上的行为被触发的时候，所有父元素身上的行为也都被触发；至于是否有事情发生，要看，是否提前绑定了某个方法；
+            冒泡阶段，从里向外冒；
+        捕获阶段：从外向里冒；
+    事件流三阶段的顺序：先捕获再目标，再冒泡；
+4.关于事件：
+    1）DOM0级事件：只能发生在冒泡阶段;首先看到的都是私有属性；
+    2）DOM2级事件：addEventListener在当前元素所属的EventTarget这个类的原型上；
+    他属于公有方法；
+5.事件委托--就是对事件冒泡的典型利用：
+当所有的元素，都要绑定某个行为的时候，我们可以把这个行为委托给他们共同的父级，然后通过事件源来做不同的事情；
+6.
+
+
+
+
+
+
+
+
+
+
+
+
+

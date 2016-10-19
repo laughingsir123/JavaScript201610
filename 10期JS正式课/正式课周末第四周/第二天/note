@@ -1,0 +1,38 @@
+1、JS和JQ的相互转换
+1）JS转JQ： $(原生)
+2）JQ转JS： $('xx').get(索引)； $('xx')[索引];
+2.今天的重点：
+    1）jQuery元素的获取（基础，独有表达式）
+    2）DOM的动态创建,克隆，插入，移除
+    3）运动：show/hide() fadeIn/fadeOut() slideDown/slideUp()  animate()
+    注意：用运动前，先用stop()停止没用的定时器
+    4）ajax和表单序列化serialize()--难点
+    serialize():可以把表单中的name和value拎出来，以键值对的形式显示；把拼好的数据放在$.ajax({data:$('form').serialize()})
+    可以通过chrome下nextWork查看：
+        1）有哪些文件被加载
+        2）当点击请求数据后，
+            可以在requestUrl中查看 请求地址？+前端向后台发送的数据；
+            可以在response中查看后台返回的数据；
+    5)插件的扩展：有两种
+        1）在原型上扩展，实例可以使用 $.fn.extend({});
+        2) 在类上扩展，实例不能用； $.extend({});
+            1.改变颜色 $.changeColor();
+            2.选项卡 $.tab()
+            3.渐隐渐现轮播图 $.banner();
+作业：
+1）下周二
+    早晨考：渐隐渐现jQuery+构造函数-机试
+    下午5点考：DOM库-手写 （单例模式+惰性思想）；
+2）有时间了，好好复习之前的效果；
+
+
+
+
+
+
+
+
+
+
+
+

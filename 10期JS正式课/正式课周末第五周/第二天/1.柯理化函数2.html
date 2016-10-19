@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html,body{
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<script>
+    Function.prototype.myBind=function(context){
+        var outArg=[].slice.call(arguments,1);
+        var _this=this;
+        if('bind' in Function.prototype){
+            return this.bind.apply(this,[context].concat(outArg))
+        }
+        //IE浏览器单独做兼容处理；
+        return function (e){
+            e=e||window.event;
+            _this.apply(context,outArg.concat([e]))
+        }
+    };
+    var obj={};
+    function  fn(){
+        //console.log(arguments)
+        console.log(this===obj)
+    }
+    document.body.onclick=fn.myBind(obj,2,3)
+</script>
+</body>
+</html>

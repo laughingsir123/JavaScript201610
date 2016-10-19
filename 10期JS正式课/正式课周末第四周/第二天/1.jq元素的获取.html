@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1{
+
+        }
+        li{
+            height: 40px;
+            background: lightblue;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+<!--<div id="div1"></div>
+<div class="box"></div>-->
+<ul>
+    <li class="li1">list item 1</li>
+    <li id="li1">list item 2</li>
+    <li class="li2">list item 3</li>
+    <li>list item 4</li>
+    <li>list item 5</li>
+</ul>
+<input type="text" value="111111">
+<input type="button" value="111111"><!--div：点击div，通过链接（url?键值对）-->
+<input type="text" value="2222">
+<input type="file" >
+
+<script src="js/jquery-1.11.3.js"></script>
+<script>
+    //var $oLi=$('li:first');
+    //var $oLi=$('li:last');
+    //var $oLi=$('li:eq(1)');
+    /*var $oLi=$('li:gt(3)')*/
+    /*$('li').eq(2).css('background','red');
+    $('li').first().css('background','red');
+    $('li').last().css('background','red');*/
+    $('li').click(function(){
+        //this-原生的； 原生转JQ： $(this)
+        alert($(this).index())
+    })
+
+
+
+
+
+
+    //var $oLi=$('li[class="li2"]');
+   // var $aInput=$('input[type=text]')//表单元素中，经常用属性选择器来选择元素；
+    var $aInput=$(':button');
+    console.log($aInput);
+    /*var $div=$('#div1');
+    var $box=$('.box');//JS中class获取元素不兼容，JQ兼容*/
+    //var $oLi=$('li:first');
+    //var $oLi=$('li:last');
+    //var $oLi=$('li:eq(1)');
+    /*var $oLi=$('li:gt(3)')
+    var oLi=document.getElementsByTagName('li')[0];
+    $oLi.css('background','red');
+    console.log(oLi)*/
+    /*$('li:odd').css('background','lightBlue');
+    $('li:even').css('background','yellow');*/
+</script>
+</body>
+</html>

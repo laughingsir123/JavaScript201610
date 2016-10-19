@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html,body{
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        *{
+            margin:0;
+            padding:0;
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+            color: #333333;
+        }
+        img{
+            border: 0;
+            display: block;
+            width:270px;
+            margin:50px auto;
+        }
+        .box{
+            width: 650px;
+            margin:10px auto;
+            position: relative;
+        }
+        .box input{
+            width: 528px;
+            height: 28px;
+            float: left;
+            border: 1px solid #b8b8b8;
+            padding:10px;
+            font-size: 20px;
+            line-height: 28px;
+            outline: none;
+        }
+        .box span{
+            width:100px;
+            height: 50px;
+            float: left;
+            background: #3385ff;
+            font-size: 20px;
+            line-height: 50px;
+            color: #fff;
+            text-align: center;
+        }
+        .box ul{
+            width:648px;
+            border: 1px solid #b8b8b8;
+            position: absolute;
+            left:0;
+            top:49px;
+            overflow: hidden;
+            display: none;
+        }
+        .box ul li{
+            height:40px;
+            line-height: 40px;
+            font-size: 20px;
+        }
+        .box ul li a{
+            display: block;
+            width: 100%;
+            height: 100%;
+            padding-left: 10px;
+        }
+        /*.box ul li a:hover{
+            background: #aaaaaa;
+        }*/
+    </style>
+</head>
+<body>
+<img src="img/bd_logo1.png" alt="">
+<div class="box">
+    <input type="text" id="txt"><span id="btn">百度一下</span>
+    <ul>
+        <li><a href="javascript:;">珠峰培训-JavaScript培训</a></li>
+        <li><a href="javascript:;">珠峰培训-怀珠格格</a></li>
+        <li><a href="javascript:;">珠峰培训-春光惨啦猪八戒</a></li>
+        <li><a href="javascript:;">珠峰培训-仙剑奇侠传</a></li>
+        <li><a href="javascript:;">珠峰培训-小李飞刀</a></li>
+        <li><a href="javascript:;">珠峰培训-新白娘子传奇</a></li>
+    </ul>
+</div>
+<script>
+    var oTxt=document.getElementById('txt');
+    var oBtn=document.getElementById('btn');
+    var oUl=document.getElementsByTagName('ul')[0];
+    var aA=oUl.getElementsByTagName('a');
+    var n=-1;
+    var oldValue=null;
+    /*
+    * 1.聚焦的时候，如果内容框有内容，ul显示，否则，ul隐藏；
+    * 2.当编辑内容的时候，如果内容框有内容，ul显示，否则，ul隐藏；
+    * 3.点击下拉单的时候：1）内容框内容改变 2）ul隐藏 3）开始搜索；
+    * 4.点击页面其他地方的时候，ul隐藏；
+    * 5.点击百度按钮的时候，开始搜索；
+    * 6.按键盘上下键：1）菜单背景发生改变 2）输入框内容同步改变
+    * 7.按下enter键的时候： 1）ul隐藏 2）开始搜索；
+    * */
+    for(var i=0; i<aA.length; i++){
+        aA[i].onmouseover=function(){
+            for(var i=0; i<aA.length; i++){
+                aA[i].style.background=null;
+            }
+            this.style.background='#aaa';
+        }
+    }
+    oTxt.onkeyup=oTxt.onfocus=function(){
+        if(this.value){
+            oUl.style.display='block';
+        }else{
+            oUl.style.display='none';
+        }
+    };
+    document.body.onclick=function(e){
+        e=e||window.event;
+        var target= e.target|| e.srcElement;
+        if(target.tagName.toLowerCase()==='a'){
+            oTxt.value=target.innerHTML;
+            search();
+        }
+        if(target.id !=='txt'){
+            oUl.style.display='none';
+        }
+        if(target.id=='btn'){
+            search();
+        }
+    };
+    oTxt.onkeydown=function(e){
+        e=e||window.event;
+        //alert(e.keyCode)//键码通过e.keyCode取到；
+        if(e.keyCode==40){//down
+            n++;
+            if(n>=aA.length){
+                n=-1;
+            }
+            show();
+        }
+        if(e.keyCode==38){
+            n--;
+            if(n<=-2){
+                n=aA.length-1;
+            }
+            show();
+        }
+        if(e.keyCode==13){
+            search();
+            oTxt.value='';
+        }
+    };
+    function search(){
+        window.open('https://www.baidu.com/s?wd='+oTxt.value,'_blank');
+        oUl.style.display='none';
+    }
+    function show(){
+        if(!oldValue){
+            oldValue=oTxt.value;
+        }
+        for(var i=0; i<aA.length; i++){
+            aA[i].style.background=null;
+        }
+        if(n==-1){//
+            oTxt.value=oldValue;
+        }else{
+            aA[n].style.background='#aaaaaa';
+            oTxt.value=aA[n].innerHTML;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

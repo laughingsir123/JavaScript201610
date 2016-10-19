@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        input{
+            height:40px;
+            width: 150px;
+        }
+        div{
+            position: absolute;
+            left:500px;
+            top:60px;
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+        #target{
+            width: 1px;
+            height: 300px;
+            position: absolute;
+            left:1000px;
+            top:0;
+            background: #000;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="左按钮">
+<input type="button" value="右按钮">
+<div id="div"></div>
+<script>
+    var oDiv=document.getElementById('div');
+    var oBtnLeft=document.getElementsByTagName('input')[0];
+    var oBtnRight=document.getElementsByTagName('input')[1];
+    oBtnRight.onclick=function(){
+        move(1200);//可以通过目标值跟现在位置的比较，得出运动的方向
+    };
+    oBtnLeft.onclick=function(){
+        move(0)
+    };
+    function  move(target){
+        _move();
+        function _move(){
+            var curLeft=oDiv.offsetLeft;
+            if(curLeft<target){//right
+                if(curLeft+10>=target){
+                    oDiv.style.left=target+'px';
+                    return;
+                }
+                curLeft+=10;
+            }else{//left
+                if(curLeft-10<=target){
+                    oDiv.style.left=target+'px';
+                    return;
+                }
+                curLeft-=10;
+            }
+            oDiv.style.left=curLeft+'px';
+            clearTimeout(oDiv.timer);
+            oDiv.timer=setTimeout(_move,10)
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="box">
+    <p></p>
+    <p></p>
+    <div>
+        <span></span>
+        <span></span>
+        <p></p>
+        <p></p>
+    </div>
+    <div></div>
+</div>
+<script src="js/jquery-1.11.3.js"></script>
+<script>
+    var $child=$('.box').children();
+    var $child2=$('.box').find('p');
+    console.log($child.length)
+    console.log($child2.length)
+</script>
+</body>
+</html>

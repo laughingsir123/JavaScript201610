@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width:200px;
+            height: 200px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div id="div"></div>
+<script src="js/jquery-1.11.3.js"></script>
+<script src="js/extend1.js"></script>
+<script>
+    //var $div=$('div');
+   // $('div').changeColor('yellow');
+    $.changeColor($('#div'),'blue')
+
+
+    /*$('li').each(function(){
+
+    })*/
+    //$().xxx();//实例  $()->原型上的共有方法； $.fn.extend({})
+    /*
+    * $()==jQuery()=new jQuery.fn.init( selector, context )
+    * $.fn=jQuery.fn = jQuery.prototype=>原型
+    * $.fn.extend(); //给原型上扩充方法； --》原型上扩充的方法都是实例可以使用的；
+    *
+    *
+    * */
+   // $.xxx();//类   $.extend();//类上扩展-》类：实际就是把函数作为一个普通对象，添加的属性和方法
+
+    /*$.each($('li'),function(){
+
+    })*/
+</script>
+</body>
+</html>

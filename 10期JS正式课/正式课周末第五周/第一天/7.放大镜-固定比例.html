@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        div{
+            width: 420px;
+            height: 420px;
+            margin:10px;
+            box-shadow: 0 0 10px #333;
+            float: left;
+            overflow: hidden;
+            position: relative;
+        }
+        #l{
+            background: url("img/1.jpg") no-repeat center;
+        }
+        #m{
+            width: 210px;
+            height: 210px;
+            background:yellow;
+            opacity: 0.5;
+            filter:alpha(opacity:50);
+            position: absolute;
+            left:0;
+            top:0;
+            display: none;
+        }
+        #r{
+            display: none;
+        }
+        #r img{
+            width:200%;
+            position: absolute;
+            left:0;
+            top:0;
+        }
+    </style>
+</head>
+<body>
+<div id="l">
+    <p id="m"></p>
+</div>
+<div id="r">
+    <img src="img/2.jpg" alt="">
+</div>
+<script>
+    var oL=document.getElementById('l');
+    var oR=document.getElementById('r');
+    var oM=document.getElementById('m');
+    var oImg=oR.getElementsByTagName('img')[0];
+    //当鼠标移入left的时候，显示oM和右边的div；
+    oL.onmouseenter=function(){
+        oM.style.display=oR.style.display='block';
+        //当鼠标移动的时候，改变oM的位置，也同步改变图片的位置，图片走的距离是oM走的距离的两倍；他两方向正好相反；
+        oL.onmousemove=function(e){
+            e=e||window.event;
+            //计算m走的距离
+            var l=e.clientX-oL.offsetLeft-oM.offsetWidth/2;
+            var t=e.clientY-oL.offsetTop-oM.offsetHeight/2;
+            //边界限制；
+            if(l<=0){
+                l=0;
+            }else if(l>=oL.offsetWidth-oM.offsetWidth){
+                l=oL.offsetWidth-oM.offsetWidth;
+            }
+            if(t<=0){
+                t=0;
+            }else if(t>=oL.offsetHeight-oM.offsetHeight){
+                t=oL.offsetHeight-oM.offsetHeight
+            }
+            //设置M的最新位置，图片的最新位置；
+            oM.style.left= l+'px';
+            oM.style.top= t+'px';
+            oImg.style.left=-2*l+'px';
+            oImg.style.top=-2*t+'px';
+
+        };
+        oL.onmouseleave=function(){
+            oM.style.display=oR.style.display='none';
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

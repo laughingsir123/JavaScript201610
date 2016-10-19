@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background: red;
+            position: absolute;
+            left:0;
+            top:0;
+        }
+        div img{
+            width: 100%;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+；离开的房间阿萨德街坊邻居进来离开的房间阿萨德街坊邻居进来离开的房间阿萨德街坊邻居进来离开的房间阿萨德街坊邻居进来离开的房间阿萨德街坊邻居进来离开的房间阿萨德街坊邻居进来离开的房间阿萨德街坊邻居进来
+<div id="div"><img src="img/1.jpg" alt=""></div>
+<script>
+    var oDiv=document.getElementById('div');
+    oDiv.onmousedown=down;
+    function down(e){
+        e=e||window.event;
+        //保存以前的left和top值，也保存了鼠标最初的坐标
+        this.x=this.offsetLeft;
+        this.y=this.offsetTop;
+        this.mx= e.clientX;
+        this.my=e.clientY;
+        //捕获焦点：把焦点都放在div身上
+        if(this.setCapture){//IE浏览器
+            this.setCapture();
+            this.onmousemove=move;
+            this.onmouseup=up;
+        }else{//标准浏览器
+            var _this=this;
+            document.onmousemove=function(){
+                move.call(_this)
+            };
+            document.onmouseup=function(){
+                up.call(_this);
+            };
+            e.preventDefault?e.preventDefault():e.returnValue=false;
+        }
+
+    }
+    function move(e){
+        //计算位置：现在的鼠标落脚点-以前的鼠标落脚点+以前的left/top;
+        e=e||window.event;
+        this.style.left= e.clientX-this.mx+this.x+'px';
+        this.style.top= e.clientY-this.my+this.y+'px';
+    }
+    function up(){
+        //在拖拽结束的时候，一定要释放焦点 obj.releaseCapture
+        if(this.releaseCapture){//IE浏览器
+            this.releaseCapture();
+            this.onmousemove=null;
+            this.onmouseup=null;
+        }else{//标准浏览器
+            document.onmousemove=null;
+            document.onmouseup=null;
+        }
+    }
+
+
+
+
+</script>
+</body>
+</html>

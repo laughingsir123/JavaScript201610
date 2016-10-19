@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        div{
+            width: 200px;
+            height: 200px;
+            background: red;
+            float: left;
+        }
+        input{
+            width: 400px;
+            height: 40px;
+            float: left;
+            margin: 40px;
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body style="height: 2000px;">
+<div id="div"></div>
+<input type="text" id="txt">
+<script>
+    var oDiv=document.getElementById('div');
+    var oTxt=document.getElementById('txt');
+    //需求：oTxt只能输入数字和编辑数字；
+    oTxt.onkeydown=function(e){
+        e=e||window.event;
+        /*if(!((e.keyCode>=48 && e.keyCode<=57) || e.keyCode==8)){
+            e.preventDefault? e.preventDefault(): e.returnValue=false;
+        }*/
+        if((e.keyCode>57 || e.keyCode<48) && e.keyCode!=8){
+            e.preventDefault? e.preventDefault(): e.returnValue=false;
+        }
+    }
+    //给oDiv这个元素，添加点击行为，并为这个行为提前绑定一个方法；只有等行为被触发的时候，才执行这个方法；
+    /*document.body.onmouseover=function(e){
+        //event：事件对象--当前行为被触发时的详细信息；
+        //console.log(e);//兼容标准浏览器
+        //IE下事件对象跟形参e没有关系，用e拿到的是undefined；window.event;
+        e=e||window.event;
+        //运算符的优先级：算术》比较》逻辑》赋值；
+        /!*e.pageY= (document.documentElement.scrollTop||document.body.scrollTop)+e.clientY;
+        e.pageX=(document.documentElement.scrollLeft||document.body.scrollLeft)+ e.clientX;*!/
+        //console.log(e.type)
+
+
+
+    }*/
+    /*oTxt.onkeydown=function(e){
+        e=e||window.event;//事件对象；
+        alert(e.keyCode)
+    }*/
+    /*document.body.oncontextmenu=function(e){
+        e=e||window.event;
+        //e.preventDefault();
+        e.preventDefault? e.preventDefault(): e.returnValue=false;
+        alert(1)
+    }*/
+</script>
+<script>
+</script>
+</body>
+</html>

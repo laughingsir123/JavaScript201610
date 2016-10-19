@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width:200px;
+            height: 200px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div id="div"></div>
+<script src="js/jquery-1.11.3.js"></script>
+<script>
+    var $div=$('div');
+    //JS中的绑定事件和解除绑定
+    /*$div.get(0).onclick=function(){
+        alert(123)
+    };
+    $div.get(0).onclick=null;*/
+    //JQ中绑定事件：on(行为，函数)=》解除绑定 off()
+    /*$div.on('click',function(){
+        alert(123)
+    })*/
+    //one事件只能被触发一次；
+    /*$div.one('click',function(){
+        alert(123)
+    })*/
+    //$div.off('click');
+</script>
+</body>
+</html>

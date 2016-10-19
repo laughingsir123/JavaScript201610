@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width:200px;
+            height: 200px;
+            background: red;
+            font-size: 40px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div></div>
+<script src="js/jquery-1.11.3.js"></script>
+<script>
+    var $p=$('<p></p>');//JQ中创建元素
+    $p.html('我是p元素');
+    var $p1=$p.clone();//克隆
+    //以下两个方法，功能相同，但是后续操作不同；
+    $p.appendTo($('div')).css('background','blue');//插入元素；
+    $p1.appendTo($('div'));
+   // $('div').append($p).css('background','blue');
+   // $p.remove();//删除谁，就在谁后面.remove();
+</script>
+</body>
+</html>
