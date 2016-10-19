@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="box"></div>
+    <script>
+        var flg='getComputedStyle' in window;
+        function prev(curEle){
+            //标准浏览器
+            if(flg){
+                return curEle.previousElementSibling;
+            }
+            //IE6-8的兼容处理；
+            var pre=curEle.previousSibling;//上一个哥哥节点
+            while(pre && pre.nodeType !==1){
+                pre=pre.previousSibling;
+            }
+            return pre;
+        }
+        var  box=document.getElementById("box");
+        console.log(prev(box));
+
+
+    </script>
+</body>
+</html>

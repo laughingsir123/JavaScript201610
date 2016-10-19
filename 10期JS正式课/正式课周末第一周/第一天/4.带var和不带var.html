@@ -1,13 +1,588 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
-<script>
-     alert(a);
-     a=345;
-</script>
-</body>
-</html>
+{
+    "vertices": [],
+    "edges": [],
+    "database": {
+        "sourceType": 0,
+        "tableList": [
+            {
+                "id": 0,
+                "sql": "select cus_packet_count.arrive_time,cus_packet_count.vpnsession,cus_packet_count.username,cus_packet_count.fileType,cus_packet_count.evtid,cus_packet_count.filePath,cus_packet_count.fileName,cus_packet_count.leave_time,cus_packet_count.leave_time1,cus_packet_count.arrive_time1,cus_packet_count.eventtype,cus_packet_count.serverIP from cus_packet_count ",
+                "columnPropertyList": [
+                    {
+                        "tableId": 0,
+                        "columnName": "arrive_time",
+                        "columnType": "java.lang.String",
+                        "columnId": 0
+                    },
+                    {
+                        "tableId": 0,
+                        "columnName": "vpnsession",
+                        "columnType": "java.lang.String",
+                        "columnId": 1
+                    },
+                    {
+                        "tableId": 0,
+                        "columnName": "username",
+                        "columnType": "java.lang.String",
+                        "columnId": 2
+                    },
+                    {
+                        "tableId": 0,
+                        "columnName": "filetype",
+                        "columnType": "java.lang.String",
+                        "columnId": 3
+                    },
+                    {
+                        "tableId": 0,
+                        "columnName": "evtid",
+                        "columnType": "java.lang.String",
+                        "columnId": 4
+                    },
+                    {
+                        "tableId": 0,
+                        "columnName": "filepath",
+                        "columnType": "java.lang.String",
+                        "columnId": 5
+                    },
+                    {
+                        "tableId": 0,
+                        "columnName": "filename",
+                        "columnType": "java.lang.String",
+                        "columnId": 6
+                    },
+                    {
+                        "tableId": 0,
+                        "columnName": "leave_time",
+                        "columnType": "java.lang.String",
+                        "columnId": 7
+                    },
+                    {
+                        "tableId": 0,
+                        "columnName": "leave_time1",
+                        "columnType": "java.lang.String",
+                        "columnId": 8
+                    },
+                    {
+                        "tableId": 0,
+                        "columnName": "arrive_time1",
+                        "columnType": "java.lang.String",
+                        "columnId": 9
+                    },
+                    {
+                        "tableId": 0,
+                        "columnName": "eventtype",
+                        "columnType": "java.lang.String",
+                        "columnId": 10
+                    },
+                    {
+                        "tableId": 0,
+                        "columnName": "serverip",
+                        "columnType": "java.lang.String",
+                        "columnId": 11
+                    }
+                ],
+                "edgeList": [
+                    {
+                        "id": 1,
+                        "uuid": "MlN1hmDNfqa1f3vpVDjSfYcFYVFt09Rx",
+                        "customEdgePropertyList": [
+                            {
+                                "propertyName": "callfrom_eventtime",
+                                "propertyType": "java.util.Date",
+                                "dateFormatString": "",
+                                "isStrongProperty": 0,
+                                "isBuildTitanIndex": 1,
+                                "isBuildSolrIndex": 1,
+                                "databaseColumnId": -1,
+                                "propertyId": 0,
+                                "propertyCardinality": 1
+                            }
+                        ],
+                        "labelName": "callfrom",
+                        "inVertexId": 3,
+                        "outVertexId": 0,
+                        "source": 0,
+                        "target": 3,
+                        "direction": "out",
+                        "relation": "callfrom"
+                    },
+                    {
+                        "id": 2,
+                        "uuid": "j9IYv7wcwRg10usiDpTjYRefwdw02H83",
+                        "customEdgePropertyList": [
+                            {
+                                "propertyName": "callto_eventtime",
+                                "propertyType": "java.util.Date",
+                                "dateFormatString": "",
+                                "isStrongProperty": 0,
+                                "isBuildTitanIndex": 1,
+                                "isBuildSolrIndex": 1,
+                                "databaseColumnId": -1,
+                                "propertyId": 0,
+                                "propertyCardinality": 1
+                            }
+                        ],
+                        "labelName": "callto",
+                        "inVertexId": 1,
+                        "outVertexId": 3,
+                        "source": 3,
+                        "target": 1,
+                        "direction": "out",
+                        "relation": "callto"
+                    },
+                    {
+                        "id": 3,
+                        "uuid": "X4Akbffr9fUMHr9cJBHwh6Ij14lk04D1",
+                        "customEdgePropertyList": [
+                            {
+                                "propertyName": "emailfrom_eventtime",
+                                "propertyType": "java.util.Date",
+                                "dateFormatString": "",
+                                "isStrongProperty": 0,
+                                "isBuildTitanIndex": 1,
+                                "isBuildSolrIndex": 1,
+                                "databaseColumnId": -1,
+                                "propertyId": 0,
+                                "propertyCardinality": 1
+                            }
+                        ],
+                        "labelName": "emailfrom",
+                        "inVertexId": 4,
+                        "outVertexId": 0,
+                        "source": 0,
+                        "target": 4,
+                        "direction": "out",
+                        "relation": "emailfrom"
+                    },
+                    {
+                        "id": 4,
+                        "uuid": "wpmATXp1vSxEOqELqzcWzq4UwYxGZzkC",
+                        "customEdgePropertyList": [
+                            {
+                                "propertyName": "emailto_eventtime",
+                                "propertyType": "java.util.Date",
+                                "dateFormatString": "",
+                                "isStrongProperty": 0,
+                                "isBuildTitanIndex": 1,
+                                "isBuildSolrIndex": 1,
+                                "databaseColumnId": -1,
+                                "propertyId": 0,
+                                "propertyCardinality": 1
+                            }
+                        ],
+                        "labelName": "emailto",
+                        "inVertexId": 1,
+                        "outVertexId": 4,
+                        "source": 4,
+                        "target": 1,
+                        "direction": "out",
+                        "relation": "emailto"
+                    }
+                ],
+                "vertexList": [
+                    {
+                        "vertexId": 0,
+                        "uuid": "G8oh4Z8qSOUnV1Z0wnkw24aTmPzhRiwT",
+                        "customVertexPropertyList": [
+                            {
+                                "propertyName": "Person_name",
+                                "propertyType": "java.lang.String",
+                                "dateFormatString": "",
+                                "isStrongProperty": 0,
+                                "isBuildTitanIndex": 1,
+                                "isBuildSolrIndex": 1,
+                                "databaseColumnId": -1,
+                                "propertyId": 0,
+                                "propertyCardinality": 1
+                            },
+                            {
+                                "propertyName": "Person_idcard",
+                                "propertyType": "java.lang.String",
+                                "dateFormatString": "",
+                                "isStrongProperty": 0,
+                                "isBuildTitanIndex": 1,
+                                "isBuildSolrIndex": 1,
+                                "databaseColumnId": -1,
+                                "propertyId": 1,
+                                "propertyCardinality": 1
+                            },
+                            {
+                                "propertyName": "Person_country",
+                                "propertyType": "java.lang.String",
+                                "dateFormatString": "",
+                                "isStrongProperty": 0,
+                                "isBuildTitanIndex": 1,
+                                "isBuildSolrIndex": 1,
+                                "databaseColumnId": -1,
+                                "propertyId": 2,
+                                "propertyCardinality": 1
+                            },
+                            {
+                                "propertyName": "Person_sex",
+                                "propertyType": "java.lang.String",
+                                "dateFormatString": "",
+                                "isStrongProperty": 0,
+                                "isBuildTitanIndex": 1,
+                                "isBuildSolrIndex": 1,
+                                "databaseColumnId": -1,
+                                "propertyId": 3,
+                                "propertyCardinality": 1
+                            },
+                            {
+                                "propertyName": "Person_birthday",
+                                "propertyType": "java.util.Date",
+                                "dateFormatString": "",
+                                "isStrongProperty": 0,
+                                "isBuildTitanIndex": 1,
+                                "isBuildSolrIndex": 1,
+                                "databaseColumnId": -1,
+                                "propertyId": 4,
+                                "propertyCardinality": 1
+                            },
+                            {
+                                "propertyName": "Person_phoneNumberList",
+                                "propertyType": "java.lang.String",
+                                "dateFormatString": "",
+                                "isStrongProperty": 0,
+                                "isBuildTitanIndex": 1,
+                                "isBuildSolrIndex": 1,
+                                "databaseColumnId": -1,
+                                "propertyId": 5,
+                                "propertyCardinality": 3
+                            },
+                            {
+                                "propertyName": "Person_emailNumberList",
+                                "propertyType": "java.lang.String",
+                                "dateFormatString": "",
+                                "isStrongProperty": 0,
+                                "isBuildTitanIndex": 1,
+                                "isBuildSolrIndex": 1,
+                                "databaseColumnId": -1,
+                                "propertyId": 6,
+                                "propertyCardinality": 3
+                            },
+                            {
+                                "propertyName": "Person_QQNumberList",
+                                "propertyType": "java.lang.Integer",
+                                "dateFormatString": "",
+                                "isStrongProperty": 1,
+                                "isBuildTitanIndex": 1,
+                                "isBuildSolrIndex": 1,
+                                "databaseColumnId": 10,
+                                "propertyId": 7,
+                                "propertyCardinality": 3,
+                                "databaseColumnValue": "eventtype"
+                            }
+                        ],
+                        "image": "images/img/Person.png",
+                        "name": "Person1",
+                        "type": "Person",
+                        "index": 0,
+                        "weight": 2,
+                        "x": 224.95251582701457,
+                        "y": 292.87631386291633,
+                        "px": 225.06613564266567,
+                        "py": 292.8402276949527
+                    },
+                    {
+                        "vertexId": 1,
+                        "uuid": "Qt4qvoZpd4jHb6cixYgqHGwplB9Q9qv1",
+                        "customVertexPropertyList": [
+                            {
+                                "propertyName": "Person_name",
+                                "propertyType": "java.lang.String",
+                                "dateFormatString": "",
+                                "isStrongProperty": 0,
+                                "isBuildTitanIndex": 1,
+                                "isBuildSolrIndex": 1,
+                                "databaseColumnId": -1,
+                                "propertyId": 0,
+                                "propertyCardinality": 1
+                            },
+                            {
+                                "propertyName": "Person_idcard",
+                                "propertyType": "java.lang.String",
+                                "dateFormatString": "",
+                                "isStrongProperty": 0,
+                                "isBuildTitanIndex": 1,
+                                "isBuildSolrIndex": 1,
+                                "databaseColumnId": -1,
+                                "propertyId": 1,
+                                "propertyCardinality": 1
+                            },
+                            {
+                                "propertyName": "Person_country",
+                                "propertyType": "java.lang.String",
+                                "dateFormatString": "",
+                                "isStrongProperty": 0,
+                                "isBuildTitanIndex": 1,
+                                "isBuildSolrIndex": 1,
+                                "databaseColumnId": -1,
+                                "propertyId": 2,
+                                "propertyCardinality": 1
+                            },
+                            {
+                                "propertyName": "Person_sex",
+                                "propertyType": "java.lang.String",
+                                "dateFormatString": "",
+                                "isStrongProperty": 0,
+                                "isBuildTitanIndex": 1,
+                                "isBuildSolrIndex": 1,
+                                "databaseColumnId": -1,
+                                "propertyId": 3,
+                                "propertyCardinality": 1
+                            },
+                            {
+                                "propertyName": "Person_birthday",
+                                "propertyType": "java.util.Date",
+                                "dateFormatString": "",
+                                "isStrongProperty": 0,
+                                "isBuildTitanIndex": 1,
+                                "isBuildSolrIndex": 1,
+                                "databaseColumnId": -1,
+                                "propertyId": 4,
+                                "propertyCardinality": 1
+                            },
+                            {
+                                "propertyName": "Person_phoneNumberList",
+                                "propertyType": "java.lang.String",
+                                "dateFormatString": "",
+                                "isStrongProperty": 0,
+                                "isBuildTitanIndex": 1,
+                                "isBuildSolrIndex": 1,
+                                "databaseColumnId": -1,
+                                "propertyId": 5,
+                                "propertyCardinality": 3
+                            },
+                            {
+                                "propertyName": "Person_emailNumberList",
+                                "propertyType": "java.lang.String",
+                                "dateFormatString": "",
+                                "isStrongProperty": 0,
+                                "isBuildTitanIndex": 1,
+                                "isBuildSolrIndex": 1,
+                                "databaseColumnId": -1,
+                                "propertyId": 6,
+                                "propertyCardinality": 3
+                            },
+                            {
+                                "propertyName": "Person_QQNumberList",
+                                "propertyType": "java.lang.Integer",
+                                "dateFormatString": "",
+                                "isStrongProperty": 1,
+                                "isBuildTitanIndex": 1,
+                                "isBuildSolrIndex": 1,
+                                "databaseColumnId": 11,
+                                "propertyId": 7,
+                                "propertyCardinality": 3,
+                                "databaseColumnValue": "serverip"
+                            }
+                        ],
+                        "image": "images/img/Person.png",
+                        "name": "Person2",
+                        "type": "Person",
+                        "index": 1,
+                        "weight": 2,
+                        "x": 606.9390367983103,
+                        "y": 209.692392746627,
+                        "px": 606.9390367983103,
+                        "py": 209.692392746627,
+                        "fixed": 1,
+                        "isdrag2": 817.950933329117,
+                        "isdrag": 817.950933329117
+                    },
+                    {
+                        "vertexId": 3,
+                        "uuid": "ZNIZuasvnLRtIYoednENivzadY5AXRy3",
+                        "customVertexPropertyList": [
+                            {
+                                "propertyName": "CallEvent_from",
+                                "propertyType": "java.lang.String",
+                                "dateFormatString": "",
+                                "isStrongProperty": 0,
+                                "isBuildTitanIndex": 1,
+                                "isBuildSolrIndex": 1,
+                                "databaseColumnId": -1,
+                                "propertyId": 0,
+                                "propertyCardinality": 1
+                            },
+                            {
+                                "propertyName": "CallEvent_to",
+                                "propertyType": "java.lang.String",
+                                "dateFormatString": "",
+                                "isStrongProperty": 0,
+                                "isBuildTitanIndex": 1,
+                                "isBuildSolrIndex": 1,
+                                "databaseColumnId": -1,
+                                "propertyId": 1,
+                                "propertyCardinality": 1
+                            },
+                            {
+                                "propertyName": "CallEvent_time",
+                                "propertyType": "java.util.Date",
+                                "dateFormatString": "",
+                                "isStrongProperty": 0,
+                                "isBuildTitanIndex": 0,
+                                "isBuildSolrIndex": 0,
+                                "databaseColumnId": -1,
+                                "propertyId": 2,
+                                "propertyCardinality": 1
+                            },
+                            {
+                                "propertyName": "CallEvent_long",
+                                "propertyType": "java.lang.Long",
+                                "dateFormatString": "",
+                                "isStrongProperty": 0,
+                                "isBuildTitanIndex": 0,
+                                "isBuildSolrIndex": 0,
+                                "databaseColumnId": -1,
+                                "propertyId": 3,
+                                "propertyCardinality": 1
+                            }
+                        ],
+                        "image": "images/img/CallEvent.png",
+                        "name": "CallEvent4",
+                        "type": "CallEvent",
+                        "index": 2,
+                        "weight": 2,
+                        "x": 392.05971743581716,
+                        "y": 182.058918267919,
+                        "px": 392.07977568458307,
+                        "py": 182.16577847141747
+                    },
+                    {
+                        "vertexId": 4,
+                        "uuid": "QMtngQnaqaRFSRWePoBFJNzpsqgaDkSY",
+                        "customVertexPropertyList": [
+                            {
+                                "propertyName": "EmailEvent_title",
+                                "propertyType": "java.lang.String",
+                                "dateFormatString": "",
+                                "isStrongProperty": 0,
+                                "isBuildTitanIndex": 1,
+                                "isBuildSolrIndex": 1,
+                                "databaseColumnId": -1,
+                                "propertyId": 0,
+                                "propertyCardinality": 1
+                            },
+                            {
+                                "propertyName": "EmailEvent_content",
+                                "propertyType": "java.lang.String",
+                                "dateFormatString": "",
+                                "isStrongProperty": 0,
+                                "isBuildTitanIndex": 1,
+                                "isBuildSolrIndex": 1,
+                                "databaseColumnId": -1,
+                                "propertyId": 1,
+                                "propertyCardinality": 1
+                            },
+                            {
+                                "propertyName": "EmailEvent_from",
+                                "propertyType": "java.lang.String",
+                                "dateFormatString": "",
+                                "isStrongProperty": 0,
+                                "isBuildTitanIndex": 1,
+                                "isBuildSolrIndex": 1,
+                                "databaseColumnId": -1,
+                                "propertyId": 2,
+                                "propertyCardinality": 1
+                            },
+                            {
+                                "propertyName": "EmailEvent_to",
+                                "propertyType": "java.lang.String",
+                                "dateFormatString": "",
+                                "isStrongProperty": 0,
+                                "isBuildTitanIndex": 1,
+                                "isBuildSolrIndex": 1,
+                                "databaseColumnId": -1,
+                                "propertyId": 3,
+                                "propertyCardinality": 3
+                            },
+                            {
+                                "propertyName": "EmailEvent_time",
+                                "propertyType": "java.util.Date",
+                                "dateFormatString": "",
+                                "isStrongProperty": 0,
+                                "isBuildTitanIndex": 0,
+                                "isBuildSolrIndex": 0,
+                                "databaseColumnId": -1,
+                                "propertyId": 4,
+                                "propertyCardinality": 1
+                            },
+                            {
+                                "propertyName": "EmailEvent_messageId",
+                                "propertyType": "java.lang.String",
+                                "dateFormatString": "",
+                                "isStrongProperty": 0,
+                                "isBuildTitanIndex": 1,
+                                "isBuildSolrIndex": 1,
+                                "databaseColumnId": -1,
+                                "propertyId": 5,
+                                "propertyCardinality": 1
+                            },
+                            {
+                                "propertyName": "EmailEvent_attachfilenames",
+                                "propertyType": "java.lang.String",
+                                "dateFormatString": "",
+                                "isStrongProperty": 0,
+                                "isBuildTitanIndex": 1,
+                                "isBuildSolrIndex": 1,
+                                "databaseColumnId": -1,
+                                "propertyId": 6,
+                                "propertyCardinality": 3
+                            },
+                            {
+                                "propertyName": "EmailEvent_attachfileContents",
+                                "propertyType": "java.lang.String",
+                                "dateFormatString": "",
+                                "isStrongProperty": 0,
+                                "isBuildTitanIndex": 1,
+                                "isBuildSolrIndex": 1,
+                                "databaseColumnId": -1,
+                                "propertyId": 7,
+                                "propertyCardinality": 3
+                            },
+                            {
+                                "propertyName": "EmailEvent_attachfilePath",
+                                "propertyType": "java.lang.String",
+                                "dateFormatString": "",
+                                "isStrongProperty": 0,
+                                "isBuildTitanIndex": 1,
+                                "isBuildSolrIndex": 1,
+                                "databaseColumnId": -1,
+                                "propertyId": 8,
+                                "propertyCardinality": 3
+                            }
+                        ],
+                        "image": "images/img/EmailEvent.png",
+                        "name": "EmailEvent5",
+                        "type": "EmailEvent",
+                        "index": 3,
+                        "weight": 2,
+                        "x": 421.92654543610223,
+                        "y": 318.7264862835673,
+                        "px": 421.9000154050739,
+                        "py": 318.6235128631651
+                    }
+                ],
+                "tablesNameList": [
+                    {
+                        "id": 0,
+                        "tableName": "cus_packet_count"
+                    }
+                ]
+            }
+        ],
+        "id": 2,
+        "connectionServerName": "192.168.40.46",
+        "connectionPort": "3306",
+        "connectionDbName": "ceshishujumofang",
+        "connectionDBUserName": "root",
+        "connectionDBPassword": "*******",
+        "connectionDriverName": "com.mysql.jdbc.Driver",
+        "connectionDB": "MYSQL",
+        "connectionServerUrl": "jdbc:mysql://192.168.40.46:3306/ceshishujumofang",
+        "connectionName": "lifusheng",
+        "connectionDBPasswordBak": "lfs13932390384@qq.com"
+    }
+}

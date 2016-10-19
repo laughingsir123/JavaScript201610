@@ -27,7 +27,7 @@
 </head>
 <body>
 <div id="div"></div>
-<div id="target"></div>
+<div id="target"></div>// 这是那根线
 <script src="utils.js"></script>
 <script>
     var oDiv=document.getElementById('div');
@@ -40,7 +40,7 @@
     var target=950;
     clearInterval(timer);
     var timer=setInterval(function(){
-        var curLeft=utils.offset(oDiv).left;
+        var curLeft=utils.offset(oDiv).left;//offsetLeft 获取的是相对于父对象的左边距 这个div的父对象是window
         if(curLeft+step>=target){//边界值判断：走到最后的时候，预估如果再走一步，就会超过目标值，那我们就直接等于目标值；
             utils.css(oDiv,'left',target);
             clearInterval(timer);

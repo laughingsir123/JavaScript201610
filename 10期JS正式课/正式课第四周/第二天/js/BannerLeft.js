@@ -1,7 +1,7 @@
 /**
  * Created by 39753 on 2016/9/28.
  */
-function Banner(id,opt){//私有变量：把普通函数中的全局变量，都作为构造函数的私有变量
+function Banner(id,opt){//私有变量：把普通函数中的全局变量，都作为构造函数的私有变量opt{url:"",interval:""}
     this.opt=opt||{};
     this.oBox=document.getElementById(id);
     this.oBoxInner=this.oBox.getElementsByTagName('div')[0];

@@ -2,11 +2,17 @@
  * Created by 39753 on 2016/9/28.
  */
 (function(id){
+    // 获取最大的div
     var oBox=document.getElementById(id);
+    // 获取存放图片的div
     var oBoxInner=oBox.getElementsByTagName('div')[0];
+    // 获取所有图片
     var aImg=oBoxInner.getElementsByTagName('img');
+    // 获取焦点所在的ul
     var oUl=oBox.getElementsByTagName('ul')[0];
+    // 获取所有的焦点
     var aLi=oUl.getElementsByTagName('li');
+    // 获取左右切换的图标
     var oBtnLeft=oBox.getElementsByTagName('a')[0];
     var oBtnRight=oBox.getElementsByTagName('a')[1];
     var data=null;
