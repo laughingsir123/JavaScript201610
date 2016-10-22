@@ -12,11 +12,14 @@
 </head>
 <body>
 <script>
+    // bind 的功能有两个 一个是改变this指向 ，一个是给原来的方法传参，bind 返回的是 改变this后的函数
     Function.prototype.myBind=function(context){
+        //context 是用来改变this指向的那个参数
         var outArg=[].slice.call(arguments,1);
         var _this=this;
         if('bind' in Function.prototype){
-            return this.bind.apply(this,[context].concat(outArg))
+            // apply 中的this是为了保持this 指向一直是实例，[contet].concat(outArg)是bind函数调用时候需要传的参数
+            return this.bind.apply(this,[contet].concat(outArg))
         }
         //IE浏览器单独做兼容处理；
         return function (e){
